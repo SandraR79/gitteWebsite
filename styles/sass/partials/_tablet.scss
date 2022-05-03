@@ -1,0 +1,15 @@
+// TABLET
+@media only screen and (min-width: 768px) {
+  p {
+    font-size: 1.25rem;
+  }
+
+  .line {
+    background-color: $prime-color; 
+    height: 1px;
+    width: 100%;
+    &.white {
+      background-color: #fff;
+    }
+  }
+}
