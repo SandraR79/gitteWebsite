@@ -33,11 +33,73 @@
     font-size: 1.3rem;
   }
 
-  .menu-icon {display: none;}
-
   nav {
+    display: flex;
+    height: 52px;
+    padding: 0 1em;
+    .menu-icon {display: none;}
     .main-nav {
-      display: flex;
+      margin-right: 4rem;
+      > li > a {padding: 0 1em;}
+      .dropdown {
+        &.open {
+          .arrow {
+            transform: rotate(270deg);
+            transform-origin: center;
+            transition: all .3s ease;
+          }  
+        }
+        .arrow {
+          display: inline-block;
+          font-size: 1.25rem;
+          font-style: normal;
+          height: 100%;
+          text-align: center;
+          margin-left: .5rem;
+          transform: rotate(90deg);
+          transition: all .3s ease;
+          width: auto;
+        }
+      }
+    }
+    .sub-nav {
+      align-items: flex-start;
+      background-color: #fff;
+      height: 47px;
+      display: none;
+      flex-direction: column;
+      justify-content: flex-start;
+      left: 0rem;
+      position: absolute;
+      transition: all .5s ease;
+      overflow: hidden;
+      top: 32px;
+      width: 120%;
+      > li {
+        text-align: left;
+        > a {
+          cursor: pointer;
+          display: block;
+          padding: .125rem 1rem;
+          width: 100%;
+          &:hover {
+            background: rgba(234, 61, 148, .2)
+          }
+        }
+      }
+      &.open {
+        display: block;
+        transition: all .5s ease;
+      }
+    }
+    .lang-nav {
+      > a {
+        margin: 0 .25rem;
+        &.active {
+          color: #000;
+          font-weight: 700;
+        }
+      }
     }
   }
 
@@ -94,7 +156,7 @@
     position: relative;
     overflow: hidden;
     padding: 0 5% 4rem;
-    width: 90%;
+    width: 100%;
   }
 
   .slider-content {
@@ -161,7 +223,7 @@
     margin-top: -3rem;
     padding: 0 5%;
     position: relative;
-    width: 90%;
+    width: 100%;
   }
 
   .slider-inner {
@@ -364,7 +426,6 @@
       justify-content: center;
       flex-direction: row;
       padding: 0 3% 0 6.5%;
-      width: 90.5%;
       > div {width: 55%;}
       > div:last-child {width: 45%;}
       .desc {
@@ -385,8 +446,30 @@
       padding: 0 10px;
       > img {
         height: 100%;
+        object-fit: cover;
         width: 100%;
       }
+    }
+  }
+}
+
+.legal {
+  font-size: 18px;
+  line-height: 1.6;
+  .content {
+    padding: 5rem 0 2rem;
+    position: static;
+    max-width: 64rem;
+    margin: 0 auto;
+    width: 86%;
+    p {
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+    h2 {font-size: 6rem;}
+    h3 {
+      font-size: 1.75rem;
+      margin-bottom: .5rem;
     }
   }
 }
