@@ -1,5 +1,6 @@
 // DESKTOP
 @media only screen and (min-width: 1024px) {
+  body, html {font-size: 18px;}
   h2 {
     font-size: $headline-size;
   }
@@ -36,10 +37,16 @@
   nav {
     display: flex;
     height: 52px;
+    justify-content: space-between;
     padding: 0 1em;
-    .menu-icon {display: none;}
+    > div {flex: 0 0 auto;}
     .main-nav {
-      margin-right: 4rem;
+      background: none;
+      position: static;
+      display: flex;
+      flex-direction: row;
+      align-self: inherit;
+      margin: 0 4rem 0 0;
       > li > a {padding: 0 1em;}
       .dropdown {
         &.open {
@@ -73,7 +80,7 @@
       position: absolute;
       transition: all .5s ease;
       overflow: hidden;
-      top: 32px;
+      top: 34px;
       width: 120%;
       > li {
         text-align: left;
@@ -139,6 +146,9 @@
         left:0;
       }
     }
+    .content {
+      position: static;
+    }
   }
   
   .header {
@@ -155,7 +165,7 @@
     overflow-x: hidden;
     position: relative;
     overflow: hidden;
-    padding: 0 5% 4rem;
+    padding: 0 5%;
     width: 100%;
   }
 
@@ -189,6 +199,8 @@
 
   /* Live Desktop */
   #live {
+    background-image: url("../../img/gittehaenning_live_BG.jpg");
+    background-size: 100% auto;
     height: 0;
     padding-top: 51%;
     position: relative;
@@ -233,7 +245,6 @@
 
   #work {
     .content {
-      position: static;
       .head {
         margin-bottom: 3rem;
         padding-left: 5%;
@@ -243,8 +254,6 @@
       }
     }
     .record {
-      cursor: pointer;
-      display: inline-block;
       min-height: 300px;
       min-width: 300px;
       p {

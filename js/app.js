@@ -149,8 +149,8 @@ const openRecord = (elem) => {
   elem.style.filter = "blur(0)"
 }
 
+let records = document.querySelectorAll(".record")
 const recordInfo = () => {
-  let records = document.querySelectorAll(".record");
   
   for(let record of records) {
     record.addEventListener('click', (event) => {
@@ -206,6 +206,7 @@ const slider = (id, slideElem, margin) => {
   const slideToRight = () => {
     let sliderElemWidth = getSliderWidth(sliderContainer)
     let innerElemWidth = getSliderInnerWidth(sliderElements, margin)
+    console.log(innerElemWidth)
     position -= sliderElemWidth
     if (position < 0) {
       position = 0

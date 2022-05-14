@@ -1,5 +1,10 @@
 // TABLET
 @media only screen and (min-width: 768px) {
+  body, html {
+    font-size: 20px;
+  }
+  nav #menuToggle input,
+  nav #menuToggle .menu-icon {display: none;}
   p {
     font-size: 1.25rem;
   }
@@ -11,5 +16,10 @@
     &.white {
       background-color: #fff;
     }
+  }
+
+  // Footer Tablet
+  footer {
+    flex-direction: row;
   }
 }
