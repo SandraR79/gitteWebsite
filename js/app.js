@@ -106,7 +106,7 @@ const terminScroller = () => {
     })
 }
 
-
+// Record Backanimation Element Calculation
 const calcScale = (elem) => {
   const card = elem.querySelector('.card');
   let scale = 0,
@@ -161,7 +161,6 @@ const openRecord = (elem) => {
 
 let records = document.querySelectorAll(".record")
 const recordInfo = () => {
-  
   for(let record of records) {
     record.addEventListener('click', (event) => {
       //apply open class
@@ -176,7 +175,6 @@ const recordInfo = () => {
     })
   }
 }
-
 
 //Slider
 const getSliderWidth = (elem) => {
@@ -243,7 +241,7 @@ const slider = (id, slideElem, margin) => {
 
 
   // Slider Filter Function
-  const findElemByYear = (year) => {
+  const scrollToYear = (year) => {
     let index = 0
     for (let slide of sliderElements) {
       index += 1
@@ -254,14 +252,14 @@ const slider = (id, slideElem, margin) => {
       }
     }
   }
-  
+
   btnFifties.addEventListener('click', () => sliderContent.style.transform = `translateX(0)`)
-  btnSixties.addEventListener('click', () => findElemByYear("60"))
-  btnSeventies.addEventListener('click', () => findElemByYear("70"))
-  btnEighties.addEventListener('click', () => findElemByYear("80"))
-  btnNineties.addEventListener('click', () => findElemByYear("90"))
-  btnTousends.addEventListener('click', () => findElemByYear("00"))
-  btnTens.addEventListener('click', () => findElemByYear("10"))
+  btnSixties.addEventListener('click', () => scrollToYear("60"))
+  btnSeventies.addEventListener('click', () => scrollToYear("70"))
+  btnEighties.addEventListener('click', () => scrollToYear("80"))
+  btnNineties.addEventListener('click', () => scrollToYear("90"))
+  btnTousends.addEventListener('click', () => scrollToYear("00"))
+  btnTens.addEventListener('click', () => scrollToYear("10"))
 
 
   // Sliding on touchdevices
@@ -295,3 +293,11 @@ const removeClassFromList = (list, className) => {
     listElem.classList.remove(className)
   }
 }
+
+dropdown()
+slider("career", ".slide", 0);
+filterDropdown("career");
+terminScroller();
+slider("work", ".card", 5);
+filterDropdown("work");
+recordInfo();
