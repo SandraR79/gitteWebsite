@@ -221,19 +221,49 @@ const slider = (id, slideElem, margin) => {
   }
 
   const slideToRight = () => {
+    let sliderElemWidth = getSliderWidth(sliderContainer)
+    let slideWidth = getElementWidth(sliderElements, margin)
     let innerElemWidth = getsliderContentWidth(sliderElements, margin)
-    position -= innerElemWidth
-    if (position < 0) {
-      position = 0
-    }
+    let scrollWidth = 0
+
+    let multiplier = Math.floor(sliderElemWidth / slideWidth)
+    if (multiplier === 0) {multiplier = 1}
+    scrollWidth = slideWidth * multiplier
+
+    if (position <= innerElemWidth - sliderElemWidth) {position -= scrollWidth}
+    if (position <= 0) {position = 0}
     sliderContent.style.transform = `translateX(-${position}px)`
   }
   
+
   // Slider controls
   const nextBtn = slider.querySelector(".next")
   const prevBtn = slider.querySelector(".prev")
   nextBtn.addEventListener('click', () => slideToLeft())
   prevBtn.addEventListener('click', () => slideToRight())
+
+
+  // Slider Filter Function
+  const findElemByYear = (year) => {
+    let index = 0
+    for (let slide of sliderElements) {
+      index += 1
+      let sliderElemWidth = slide.offsetWidth
+      if (slide.getAttribute('data-year') === year) {
+        position = (sliderElemWidth * index) - sliderElemWidth
+        sliderContent.style.transform = `translateX(-${position}px)`
+      }
+    }
+  }
+  const btnSixties = document.getElementById('btnSixties')
+  btnFifties.addEventListener('click', () => sliderContent.style.transform = `translateX(0)`)
+  btnSixties.addEventListener('click', () => findElemByYear("60"))
+  btnSeventies.addEventListener('click', () => findElemByYear("70"))
+  btnEighties.addEventListener('click', () => findElemByYear("80"))
+  btnNineties.addEventListener('click', () => findElemByYear("90"))
+  btnTousends.addEventListener('click', () => findElemByYear("00"))
+  btnTens.addEventListener('click', () => findElemByYear("10"))
+
 
   // Sliding on touchdevices
   let touchstartX = 0
