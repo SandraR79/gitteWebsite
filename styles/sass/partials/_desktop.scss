@@ -23,7 +23,10 @@
       position: absolute;
       bottom: 0;
     }
-    h2 {margin-bottom: -1.425rem;}
+    h2 {
+      margin: 0;
+      margin-bottom: -1.425rem;
+    }
   }
 
   h3 {
@@ -150,12 +153,6 @@
       position: static;
     }
   }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    width: 95%;
-  }
 
   #timeline {
     position: relative;
@@ -238,19 +235,17 @@
     width: 100%;
   }
 
-  .slider-inner {
+  .slider-content {
     align-items:center;
     padding: 5.5rem 0 3rem;
   }
 
-  #work {
-    .content {
-      .head {
-        margin-bottom: 3rem;
-        padding-left: 5%;
-        .line {
-          left:0;
-        }
+  #work {      
+    .head {
+      margin-bottom: 3rem;
+      padding-left: 5%;
+      .line {
+        left:0;
       }
     }
     .record {
@@ -416,6 +411,9 @@
             display: inline-block;
             font-weight: 700;     
           }
+        }
+        .tracks {
+          overflow: auto;
         }
       }
     }

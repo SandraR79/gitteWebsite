@@ -245,6 +245,7 @@ nav #menuToggle input:checked ~ .main-nav {
   display: flex;
 }
 nav #menuToggle input ~ .menu-icon {
+  background: url(../../img/menu.svg) center center no-repeat;
   display: flex;
   height: 28px;
   position: absolute;
@@ -254,23 +255,6 @@ nav #menuToggle input ~ .menu-icon {
   right: 0;
   width: 36px;
   z-index: 1;
-}
-nav #menuToggle input ~ .menu-icon > span {
-  background: black;
-  display: block;
-  height: 3px;
-  margin-bottom: 5px;
-  position: relative;
-  transform-origin: center;
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
-  width: 33px;
-  z-index: 1;
-}
-nav #menuToggle input ~ .menu-icon > span:first-child {
-  transform-origin: 0% 0%;
-}
-nav #menuToggle input ~ .menu-icon > span:nth-last-child(2) {
-  transform-origin: 0% 100%;
 }
 nav .lang-nav > a {
   margin: 0 .25rem;
@@ -353,7 +337,7 @@ section {
   align-content: flex-end;
   display: inline-flex;
   position: relative;
-  margin: 2rem 0;
+  margin: 0 0 2rem;
   box-sizing: border-box;
 }
 .head .line {
@@ -362,6 +346,7 @@ section {
 }
 .head h2 {
   margin-bottom: -.8rem;
+  margin-left: 2rem;
 }
 
 .line {
@@ -476,6 +461,12 @@ section {
   background-color: #ea3d94;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+}
+
 #timeline {
   position: relative;
   align-items: flex-start;
@@ -489,6 +480,7 @@ section {
 }
 #timeline .slider-nav {
   top: 30%;
+  z-index: 10;
 }
 #timeline .slider-nav .line {
   height: 0;
@@ -498,13 +490,14 @@ section {
   fill: #fff;
 }
 
-.slider-content {
+.slider-container {
   align-items: flex-start;
   display: flex;
   justify-content: start;
   padding: 5% 0 2%;
   position: relative;
   width: 100%;
+  overflow: hidden;
   z-index: 1;
 }
 
@@ -514,11 +507,7 @@ section {
   width: 100%;
 }
 
-.slider-container {
-  overflow: hidden;
-}
-
-.slider-inner {
+.slider-content {
   display: flex;
   position: relative;
   transition: all .8s ease-in-out;
@@ -559,6 +548,11 @@ section {
   transform: translate(10px, -50%);
 }
 
+.slide {
+  display: inline-flex;
+  width: auto;
+}
+
 .desc {
   display: flex;
   flex-direction: column;
@@ -584,14 +578,16 @@ section {
   justify-content: center;
   height: 298px;
   margin-bottom: 2rem;
-  width: 242px;
+  width: 58.454vw;
+  max-width: 242px;
 }
 .polaroid > .image {
   box-shadow: inset -2px -2px 4px rgba(0, 0, 0, 0.3);
   height: 220px;
   margin-top: 20px;
   overflow: hidden;
-  width: 210px;
+  width: 50.725vw;
+  max-width: 210px;
 }
 
 /* Live Mobile */
@@ -622,27 +618,36 @@ section {
 #live #termine #termin-scroller .scroll-content {
   transition: all .4s ease;
 }
-#live #termine #termin-scroller .scroll-content > p {
+#live #termine h4 {
+  color: #fff;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-top: 1rem;
+}
+#live #termine h4:first-child {
+  margin: 0;
+}
+#live #termine .concert {
   margin: .5rem 0;
 }
-#live #termine #termin-scroller .scroll-content > p > span {
+#live #termine .concert > span {
   margin-right: 2rem;
 }
-#live #termine #termin-scroller .scroll-content > p > a {
+#live #termine .concert > a {
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.7);
   font-size: .85rem;
   padding: 0 10px;
   margin-left: 2rem;
 }
-#live #termine #termin-scroller .scroll-content > p > sub {
+#live #termine .concert > sub {
   color: rgba(255, 255, 255, 0.5);
   font-weight: 700;
   font-size: 70%;
   margin-top: -2rem;
   display: inline-block;
 }
-#live #termine a {
+#live #termine .concert a {
   align-items: center;
   display: inline-flex;
   justify-content: center;
@@ -685,15 +690,15 @@ section {
   background-color: #fff;
   position: relative;
 }
-#work .content {
-  position: static;
-}
-#work .content .head h2, #work .content .head p {
+#work .head h2, #work .head p {
   color: #ea3d94;
 }
-#work .content .head p {
+#work .head p {
   bottom: -4rem;
   position: absolute;
+}
+#work .content {
+  position: static;
 }
 #work .record {
   cursor: pointer;
@@ -870,6 +875,7 @@ footer > div {
     bottom: 0;
   }
   .head h2 {
+    margin: 0;
     margin-bottom: -1.425rem;
   }
 
@@ -993,12 +999,6 @@ footer > div {
     position: static;
   }
 
-  .header {
-    display: flex;
-    justify-content: space-between;
-    width: 95%;
-  }
-
   #timeline {
     position: relative;
     align-items: flex-start;
@@ -1080,16 +1080,16 @@ footer > div {
     width: 100%;
   }
 
-  .slider-inner {
+  .slider-content {
     align-items: center;
     padding: 5.5rem 0 3rem;
   }
 
-  #work .content .head {
+  #work .head {
     margin-bottom: 3rem;
     padding-left: 5%;
   }
-  #work .content .head .line {
+  #work .head .line {
     left: 0;
   }
   #work .record {
@@ -1257,6 +1257,9 @@ footer > div {
   #work .card .back p span {
     display: inline-block;
     font-weight: 700;
+  }
+  #work .card .back .tracks {
+    overflow: auto;
   }
 
   #contact {

@@ -28,7 +28,7 @@ const filterDropdown = (id) => {
 }
 
 //Dropdown 
-const dropdownFunc = () => {
+const dropdown = () => {
   const menu = document.getElementById('nav').querySelector('.main-nav')
   const dropdown = menu.querySelector('.dropdown')
   const subnav = menu.querySelector('.sub-nav')
@@ -39,6 +39,16 @@ const dropdownFunc = () => {
     let allElemsHeight = elements[1].offsetHeight * elements.length
     dropdown.classList.toggle('open')
     subnav.style.height = subnav.classList.contains("open") ? allElemsHeight + "px" : "49px"
+    for (let element of elements) {
+      element.addEventListener('click', () => {
+        if (dropdown.classList.contains('open')) {
+          dropdown.classList.remove('open')
+        }
+        if (subnav.classList.contains('open')) {
+          subnav.classList.remove('open')
+        }
+      })
+    }
   })
 }
 
@@ -173,67 +183,64 @@ const getSliderWidth = (elem) => {
   return elem.offsetWidth;
 }
 
-const getSliderInnerWidth = (elem, margin) => {
+const getsliderContentWidth = (slides, margin) => {
   let innerWidth = 0;
-  for (let card of elem) {
-    innerWidth += card.offsetWidth + margin
+  for (let slide of slides) {
+    innerWidth += slide.offsetWidth + margin
   }
   return innerWidth
 }
 
 const getElementWidth = (elem, margin) => {
-  let cardWidth = 0
-  for (let card of elem) {
-    cardWidth = card.offsetWidth + margin
+  let slideWidth = 0
+  for (let slide of elem) {
+    slideWidth = slide.offsetWidth + margin
   }
-  return cardWidth
+  return slideWidth
 }
 
 const slider = (id, slideElem, margin) => {
   const slider = document.getElementById(id)
   const sliderContainer = slider.querySelector('.slider-container')
-  const sliderInner = slider.querySelector('.slider-inner')
-  const nextBtn = slider.querySelector(".next")
-  const prevBtn = slider.querySelector(".prev")
+  const sliderContent = slider.querySelector('.slider-content')
   const sliderElements = slider.querySelectorAll(slideElem)
 
+  const slideToLeft = () => {
+    let sliderElemWidth = getSliderWidth(sliderContainer)
+    let slideWidth = getElementWidth(sliderElements, margin)
+    let innerElemWidth = getsliderContentWidth(sliderElements, margin)
+    let scrollWidth = 0
+
+    let multiplier = Math.floor(sliderElemWidth / slideWidth)
+    if (multiplier === 0) {multiplier = 1}
+    scrollWidth = slideWidth * multiplier
+
+    if (position <= innerElemWidth - sliderElemWidth) {position += scrollWidth}
+    if (position + sliderElemWidth > innerElemWidth) {position = innerElemWidth - sliderElemWidth}
+    sliderContent.style.transform = `translateX(-${position}px)`
+  }
+
+  const slideToRight = () => {
+    let innerElemWidth = getsliderContentWidth(sliderElements, margin)
+    position -= innerElemWidth
+    if (position < 0) {
+      position = 0
+    }
+    sliderContent.style.transform = `translateX(-${position}px)`
+  }
+  
+  // Slider controls
+  const nextBtn = slider.querySelector(".next")
+  const prevBtn = slider.querySelector(".prev")
+  nextBtn.addEventListener('click', () => slideToLeft())
+  prevBtn.addEventListener('click', () => slideToRight())
+
+  // Sliding on touchdevices
   let touchstartX = 0
   let touchendX = 0
   let touchstartY = 0
   let touchendY = 0
   let position = 0
-
-  const slideToRight = () => {
-    let sliderElemWidth = getSliderWidth(sliderContainer)
-    let innerElemWidth = getSliderInnerWidth(sliderElements, margin)
-    console.log(innerElemWidth)
-    position -= sliderElemWidth
-    if (position < 0) {
-      position = 0
-    }
-    sliderInner.style.transform = `translateX(-${position}px)`
-  }
-  const slideToLeft = () => {
-    let sliderElemWidth = getSliderWidth(sliderContainer)
-    let cardWidth = getElementWidth(sliderElements, margin)
-    let innerElemWidth = getSliderInnerWidth(sliderElements, margin)
-    let scrollWidth = 0
-    
-    let multiplier = Math.floor(sliderElemWidth / cardWidth)
-    scrollWidth = cardWidth * multiplier
-
-    if (position < innerElemWidth - sliderElemWidth) {
-      position += scrollWidth
-    }
-
-    if (position + sliderElemWidth > innerElemWidth) {
-      position = innerElemWidth - sliderElemWidth
-    }
-    sliderInner.style.transform = `translateX(-${position}px)`
-  }
-  
-  nextBtn.addEventListener('click', () => slideToLeft())
-  prevBtn.addEventListener('click', () => slideToRight())
 
   function handleGesture() {
     if (Math.abs(touchendX - touchstartX) <= 20 || Math.abs(touchendY - touchstartY) >= Math.abs(touchendX - touchstartX)) {return}

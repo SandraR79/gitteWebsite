@@ -4,7 +4,7 @@ gsap.registerPlugin(ScrollTrigger);
 const menu = document.getElementById('nav').querySelector('.main-nav')
 const menuPoints = menu.querySelectorAll('.main-nav-point')
 const records = document.querySelectorAll(".record")
-const points = document.querySelectorAll(".point")
+const slides = document.querySelectorAll(".slide")
 const termin = document.getElementById('termine')
 const termine = termin.querySelectorAll('.scroll-content > p')
 const contact = document.getElementById('contact')
@@ -34,7 +34,7 @@ careerTl.fromTo('#career .head .line', {x: "-100%"}, {x: 0, duration: 1, ease: "
 careerTl.fromTo('#career .head h2', {opacity: 0, x: 70}, {opacity: 1, x: 0, duration: .75, ease: "back.out"})
 careerTl.fromTo('#career .filter', {opacity: 0, x: 30}, {opacity: 1, x: 0, duration: .75, ease: "back.out"}, "<20%")
 careerTl.fromTo('#timeline .slider-nav .line', {scale: 0}, {scale: 1, duration: .75, ease: "power1.out"}, "<50%")
-points.forEach((point) => {careerTl.fromTo(point, {opacity: 0, y: 60}, {opacity: 1, y: 0, duration: .75, ease: "back.in"}, "<20%")}, "<60%")
+slides.forEach((slide) => {careerTl.fromTo(slide, {opacity: 0, y: 60}, {opacity: 1, y: 0, duration: .75, ease: "back.in"}, "<20%")}, "<60%")
 
 //Live
 const liveTl = gsap.timeline({
