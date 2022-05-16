@@ -205,7 +205,7 @@ const slider = (id, slideElem, margin) => {
   const sliderContent = slider.querySelector('.slider-content')
   const sliderElements = slider.querySelectorAll(slideElem)
 
-  const slideToLeft = () => {
+  const getScrollWidth = () => {
     let sliderElemWidth = getSliderWidth(sliderContainer)
     let slideWidth = getElementWidth(sliderElements, margin)
     let innerElemWidth = getsliderContentWidth(sliderElements, margin)
@@ -215,20 +215,19 @@ const slider = (id, slideElem, margin) => {
     if (multiplier === 0) {multiplier = 1}
     scrollWidth = slideWidth * multiplier
 
+    return [scrollWidth, sliderElemWidth, innerElemWidth]
+  }
+
+  const slideToLeft = () => {
+    const [scrollWidth, sliderElemWidth, innerElemWidth] = getScrollWidth();
     if (position <= innerElemWidth - sliderElemWidth) {position += scrollWidth}
     if (position + sliderElemWidth > innerElemWidth) {position = innerElemWidth - sliderElemWidth}
     sliderContent.style.transform = `translateX(-${position}px)`
   }
 
   const slideToRight = () => {
-    let sliderElemWidth = getSliderWidth(sliderContainer)
-    let slideWidth = getElementWidth(sliderElements, margin)
-    let innerElemWidth = getsliderContentWidth(sliderElements, margin)
-    let scrollWidth = 0
-
-    let multiplier = Math.floor(sliderElemWidth / slideWidth)
-    if (multiplier === 0) {multiplier = 1}
-    scrollWidth = slideWidth * multiplier
+    const [scrollWidth, sliderElemWidth, innerElemWidth] = getScrollWidth();
+    console.log(scrollWidth, sliderElemWidth, innerElemWidth)
 
     if (position <= innerElemWidth - sliderElemWidth) {position -= scrollWidth}
     if (position <= 0) {position = 0}
@@ -255,7 +254,7 @@ const slider = (id, slideElem, margin) => {
       }
     }
   }
-  const btnSixties = document.getElementById('btnSixties')
+  
   btnFifties.addEventListener('click', () => sliderContent.style.transform = `translateX(0)`)
   btnSixties.addEventListener('click', () => findElemByYear("60"))
   btnSeventies.addEventListener('click', () => findElemByYear("70"))
