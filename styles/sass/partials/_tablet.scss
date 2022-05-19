@@ -3,7 +3,6 @@
   body, html {
     font-size: 20px;
   }
-  nav #menuToggle input,
   nav #menuToggle .menu-icon {display: none;}
   p {
     font-size: 1.25rem;
@@ -15,6 +14,38 @@
     width: 100%;
     &.white {
       background-color: #fff;
+    }
+  }
+
+  #start {
+    background-image: url("../../img/gittehaenning_start_BG_tablet.jpg");
+    background-size: 100% auto;
+    min-height: 80vh;
+    .desc {
+      width: 55vw;
+    }
+  }
+
+  #live {
+    background-image: url("../../img/gittehaenning_live_BG_tablet.jpg");
+    background-size: 100% auto;
+    #termine {
+      align-self: flex-end;
+      height: 60vh;
+      width: 55vw;
+      .date {
+        width: auto;
+      }
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+    .head {margin-bottom: 2rem;}
+    .note {
+      align-self: flex-end;
+      margin: 2rem 0 3rem;
+      width: 55vw;
     }
   }
 

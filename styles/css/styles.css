@@ -598,17 +598,18 @@ section {
   background-repeat: no-repeat;
 }
 #live .head {
-  margin-bottom: 3rem;
+  margin-bottom: 1em;
 }
 #live #termine {
   align-self: flex-start;
   display: inline-flex;
   flex-direction: column;
+  height: 70vh;
 }
 #live #termine #termin-scroller {
   border-top: 1px solid #fff;
   border-bottom: 1px solid transparent;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
 }
 #live #termine #termin-scroller.invisible {
@@ -628,10 +629,26 @@ section {
   margin: 0;
 }
 #live #termine .concert {
+  display: flex;
+  flex-wrap: wrap;
   margin: .5rem 0;
 }
 #live #termine .concert > span {
+  flex: 0 0 auto;
   margin-right: 2rem;
+}
+#live #termine .concert > span > sub {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 700;
+  font-size: 70%;
+  margin: -.25rem 0 0 .25rem;
+  display: inline-block;
+}
+#live #termine .concert .date {
+  width: 100%;
+}
+#live #termine .concert .location {
+  flex: 1 1 auto;
 }
 #live #termine .concert > a {
   display: inline-block;
@@ -640,16 +657,10 @@ section {
   padding: 0 10px;
   margin-left: 2rem;
 }
-#live #termine .concert > sub {
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 700;
-  font-size: 70%;
-  margin-top: -2rem;
-  display: inline-block;
-}
 #live #termine .concert a {
+  align-self: flex-end;
   align-items: center;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   transition: all .5s ease;
 }
@@ -824,7 +835,6 @@ footer > div {
     font-size: 20px;
   }
 
-  nav #menuToggle input,
   nav #menuToggle .menu-icon {
     display: none;
   }
@@ -840,6 +850,40 @@ footer > div {
   }
   .line.white {
     background-color: #fff;
+  }
+
+  #start {
+    background-image: url("../../img/gittehaenning_start_BG_tablet.jpg");
+    background-size: 100% auto;
+    min-height: 80vh;
+  }
+  #start .desc {
+    width: 55vw;
+  }
+
+  #live {
+    background-image: url("../../img/gittehaenning_live_BG_tablet.jpg");
+    background-size: 100% auto;
+  }
+  #live #termine {
+    align-self: flex-end;
+    height: 60vh;
+    width: 55vw;
+  }
+  #live #termine .date {
+    width: auto;
+  }
+  #live .content {
+    display: flex;
+    flex-direction: column;
+  }
+  #live .head {
+    margin-bottom: 2rem;
+  }
+  #live .note {
+    align-self: flex-end;
+    margin: 2rem 0 3rem;
+    width: 55vw;
   }
 
   footer {
@@ -1059,18 +1103,27 @@ footer > div {
   #live .content .desc {
     width: 90%;
   }
-
-  #termine {
+  #live .note {
+    align-self: start;
+    margin: 0;
+    width: auto;
+  }
+  #live #termine {
+    align-self: flex-start;
     height: 50vh;
     margin-bottom: 5rem;
+    width: auto;
   }
-  #termine #termin-scroller {
+  #live #termine #termin-scroller {
     display: inline-block;
     height: 100%;
   }
-  #termine #termin-scroller .scroll-content {
+  #live #termine #termin-scroller .scroll-content {
     display: inline-block;
     padding: .5rem 0;
+  }
+  #live #termine .concert .date {
+    width: auto;
   }
 
   .slider {
@@ -1082,7 +1135,6 @@ footer > div {
 
   .slider-content {
     align-items: center;
-    padding: 5.5rem 0 3rem;
   }
 
   #work .head {

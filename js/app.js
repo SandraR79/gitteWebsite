@@ -75,17 +75,18 @@ const terminScroller = () => {
       let scrollerHeight = getScrollerHeight();
       let scrollerContentHeight = getScrollerContentHeight();
       if (scrollerHeight < scrollerContentHeight) {
-        position = scrollerContentHeight - scrollerHeight;
+        position += scrollerHeight;
         scrollerContent.style.transform = "translateY(-" + position + "px)";
-        if (up.classList.contains("invisible")) {
-          up.classList.remove("invisible")
-          scroller.classList.remove("invisible")
-          down.classList.add("invisible")
-        } else {
-          up.classList.add("invisible")
-          scroller.classList.add("invisible")
-        }
+        // if (up.classList.contains("invisible")) {
+        //     up.classList.remove("invisible")
+        //     scroller.classList.remove("invisible")
+        //     down.classList.add("invisible")
+        //   } else {
+        //     up.classList.add("invisible")
+        //     scroller.classList.add("invisible")
+        //   }
       }
+      if (position + scrollerHeight < scrollerContentHeight) {position = scrollerHeight - position}
     })
 
     up.addEventListener('click', () => {

@@ -518,15 +518,16 @@ section {
   background-position: center top;
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  .head {margin-bottom: 3rem;}
+  .head {margin-bottom: 1em;}
   #termine {
     align-self: flex-start;
     display: inline-flex;
     flex-direction: column;
+    height: 70vh;
     #termin-scroller {
       border-top: 1px solid #fff;
       border-bottom: 1px solid transparent;
-      overflow: hidden;
+      overflow: auto;
       position: relative;
       &.invisible {
         border-bottom: 1px solid #fff;
@@ -544,10 +545,22 @@ section {
       &:first-child {margin: 0;}
     }
     .concert {
+      display: flex;
+      flex-wrap: wrap;
       margin: .5rem 0;
       > span {
+        flex: 0 0 auto;
         margin-right: 2rem;
+        > sub {
+          color: rgba(255,255,255,.5);
+          font-weight: 700;
+          font-size: 70%;
+          margin: -.25rem 0 0 .25rem;
+          display: inline-block;
+        }
       }
+      .date {width: 100%;}
+      .location {flex: 1 1 auto;}
       > a {
         display: inline-block;
         background-color: rgba(255,255,255,0.7);
@@ -555,16 +568,10 @@ section {
         padding: 0 10px;
         margin-left: 2rem;
       }
-      > sub {
-        color: rgba(255,255,255,.5);
-        font-weight: 700;
-        font-size: 70%;
-        margin-top: -2rem;
-        display: inline-block;
-      }
       a {
+        align-self: flex-end;
         align-items: center;
-        display: inline-flex;
+        display: flex;
         justify-content: center;
         transition: all .5s ease;
       }
