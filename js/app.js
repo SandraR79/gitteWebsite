@@ -1,5 +1,7 @@
 "use strict"
 
+let isMobile = window.matchMedia("(pointer:coarse)").matches;
+
 // Filter
 const filterDropdown = (id) => {
   let parentElem = document.getElementById(id),
@@ -41,10 +43,8 @@ const dropdown = () => {
     subnav.style.height = subnav.classList.contains("open") ? allElemsHeight + "px" : "49px"
     for (let element of elements) {
       element.addEventListener('click', () => {
-        if (dropdown.classList.contains('open')) {
+        if (dropdown.classList.contains('open') || subnav.classList.contains('open')) {
           dropdown.classList.remove('open')
-        }
-        if (subnav.classList.contains('open')) {
           subnav.classList.remove('open')
         }
       })
@@ -74,7 +74,7 @@ const terminScroller = () => {
     down.addEventListener('click', () => {
       let scrollerHeight = getScrollerHeight();
       let scrollerContentHeight = getScrollerContentHeight();
-      if (scrollerHeight < scrollerContentHeight) {
+      if (position + scrollerHeight < scrollerContentHeight) {
         position += scrollerHeight;
         scrollerContent.style.transform = "translateY(-" + position + "px)";
         // if (up.classList.contains("invisible")) {
@@ -82,11 +82,11 @@ const terminScroller = () => {
         //     scroller.classList.remove("invisible")
         //     down.classList.add("invisible")
         //   } else {
-        //     up.classList.add("invisible")
-        //     scroller.classList.add("invisible")
-        //   }
+      //         up.classList.add("invisible")
+      //         scroller.classList.add("invisible")
+      //       }
+      //   }
       }
-      if (position + scrollerHeight < scrollerContentHeight) {position = scrollerHeight - position}
     })
 
     up.addEventListener('click', () => {
@@ -129,6 +129,9 @@ const closeRecord = (elem) => {
   elem.classList.remove("open");
   card.style.transform = "scale(1)"
   blurSiblings(false);
+  let scrollBacktoInitialPosition = parseInt(elem.parentElement.getAttribute('data-scrolltomiddle'))
+  elem.parentElement.style.transform = `translateX(-${scrollBacktoInitialPosition}px)`
+  console.log(scrollBacktoInitialPosition)
 }
 
 const openRecord = (elem) => {
@@ -158,6 +161,14 @@ const openRecord = (elem) => {
   subhead.style.marginBottom = margin + "rem"
   blurSiblings(true);
   elem.style.filter = "blur(0)"
+  let parentElemWidth = elem.parentElement.offsetWidth
+  let elemWidth = elem.offsetWidth
+  let parentElemCenter = (parentElemWidth / 2) + elem.parentElement.offsetLeft
+  let elemCenter = (elemWidth / 2) + elem.offsetLeft
+  let scrollToMiddleDistance = Math.round(parentElemCenter - elemCenter)
+  elem.parentElement.style.transform = `translateX(${scrollToMiddleDistance}px)`
+  elem.parentElement.setAttribute('data-scrolltomiddle', scrollToMiddleDistance)
+  console.log('ParentCenter:', parentElemCenter,'elemCenter', elemCenter, 'parentElemWidth', parentElemWidth, 'elemWidth', elemWidth, 'scrollToMiddleDistance', scrollToMiddleDistance)
 }
 
 let records = document.querySelectorAll(".record")
@@ -222,15 +233,18 @@ const slider = (id, slideElem, margin) => {
     if (position <= innerElemWidth - sliderElemWidth) {position += scrollWidth}
     if (position + sliderElemWidth > innerElemWidth) {position = innerElemWidth - sliderElemWidth}
     sliderContent.style.transform = `translateX(-${position}px)`
+    blurSiblings(false)
+    const openRecord = document.querySelector('.record.open')
+    if (openRecord) {closeRecord(openRecord)}
   }
 
   const slideToRight = () => {
     const [scrollWidth, sliderElemWidth, innerElemWidth] = getScrollWidth();
-    console.log(scrollWidth, sliderElemWidth, innerElemWidth)
 
     if (position <= innerElemWidth - sliderElemWidth) {position -= scrollWidth}
     if (position <= 0) {position = 0}
     sliderContent.style.transform = `translateX(-${position}px)`
+    blurSiblings(false)
   }
   
 
@@ -254,7 +268,7 @@ const slider = (id, slideElem, margin) => {
     }
   }
 
-  btnFifties.addEventListener('click', () => sliderContent.style.transform = `translateX(0)`)
+  btnFifties.addEventListener('click', () => {if (position !== 0) {sliderContent.style.transform = `translateX(0)`}})
   btnSixties.addEventListener('click', () => scrollToYear("60"))
   btnSeventies.addEventListener('click', () => scrollToYear("70"))
   btnEighties.addEventListener('click', () => scrollToYear("80"))
@@ -270,7 +284,7 @@ const slider = (id, slideElem, margin) => {
   let touchendY = 0
   let position = 0
 
-  function handleGesture() {
+  const handleGesture = () => {
     if (Math.abs(touchendX - touchstartX) <= 20 || Math.abs(touchendY - touchstartY) >= Math.abs(touchendX - touchstartX)) {return}
     if (touchendX < touchstartX) {slideToLeft()}
     if (touchendX > touchstartX) {slideToRight()}
@@ -299,6 +313,11 @@ dropdown()
 slider("career", ".slide", 0);
 filterDropdown("career");
 terminScroller();
-slider("work", ".card", 5);
+
 filterDropdown("work");
-recordInfo();
+if (!isMobile) {
+  slider("work", ".card", 5);
+  recordInfo();
+} else {
+  slider("work", ".card", 0);
+}

@@ -527,7 +527,7 @@ section {
     #termin-scroller {
       border-top: 1px solid #fff;
       border-bottom: 1px solid transparent;
-      overflow: auto;
+      overflow: hidden;
       position: relative;
       &.invisible {
         border-bottom: 1px solid #fff;
