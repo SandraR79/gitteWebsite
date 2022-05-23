@@ -15,8 +15,21 @@ html {
   font-size: 22px;
 }
 
+::-webkit-scrollbar {
+  margin: .1rem;
+  padding: .1rem;
+  width: .5rem;
+}
+::-webkit-scrollbar-track {
+background: rgba(0,0,0,.1);
+}
+::-webkit-scrollbar-thumb {
+border-radius: .25rem;
+background: $prime-color;
+}
 html {
   scroll-behavior: smooth;
+  scrollbar-color: $prime-color rgba(0,0,0,.1);
 }
 
 a {
@@ -39,6 +52,7 @@ body {
   line-height: 150%;
 }
 
+
 html .legal {
   background-color: $prime-color;
   font-size: 18px;
@@ -47,12 +61,10 @@ html .legal {
     font-size: 1rem;
     margin-bottom: 3rem;
   }
-  h2 {font-size: 4rem;}
-  h3 {
-    font-size: 1.75rem;
-    line-height: 1.2;
-  }
   .content {
+    h2 {
+      font-size: 3rem;
+      margin: 0;}
     color: #fff;
     a {
       color: #fff;
@@ -525,14 +537,14 @@ section {
     flex-direction: column;
     height: 70vh;
     #termin-scroller {
-      border-top: 1px solid #fff;
-      border-bottom: 1px solid transparent;
-      overflow: hidden;
+      // border-top: 1px solid #fff;
+      // border-bottom: 1px solid transparent;
+      overflow: auto;
       position: relative;
-      &.invisible {
-        border-bottom: 1px solid #fff;
-        border-top: 1px solid transparent;
-      }
+      // &.invisible {
+      //   border-bottom: 1px solid #fff;
+      //   border-top: 1px solid transparent;
+      // }
       .scroll-content {
         transition: all .4s ease;
       }
@@ -562,18 +574,18 @@ section {
       .date {width: 100%;}
       .location {flex: 1 1 auto;}
       > a {
-        display: inline-block;
-        background-color: rgba(255,255,255,0.7);
-        font-size: .85rem;
-        padding: 0 10px;
-        margin-left: 2rem;
-      }
-      a {
         align-self: flex-end;
-        align-items: center;
+        background-color: rgba(255,255,255,0.7);
+        margin: 2px;
         display: flex;
+        font-size: .85rem;
         justify-content: center;
+        margin-left: 2rem;
+        padding: 0 10px;
         transition: all .5s ease;
+        &:hover {
+          background-color: #fff;
+        }
       }
     }
     .up,

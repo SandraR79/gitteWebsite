@@ -3,7 +3,8 @@
   body, html {
     font-size: 20px;
   }
-  nav #menuToggle .menu-icon {display: none;}
+  nav #menuToggle input,
+  nav #menuToggle input ~ .menu-icon {display: none;}
   p {
     font-size: 1.25rem;
   }
@@ -46,6 +47,19 @@
       align-self: flex-end;
       margin: 2rem 0 3rem;
       width: 55vw;
+    }
+  }
+
+  html .legal {
+    .content {
+      h2 {
+        font-size: 4rem;
+        -moz-hyphens: auto;
+        -o-hyphens: auto;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto; 
+      }
     }
   }
 

@@ -125,24 +125,43 @@ const blurSiblings = (status) => {
 }
 
 const closeRecord = (elem) => {
+  if (!elem.classList.contains('open')) return
   const card = elem.querySelector('.card');
-  elem.classList.remove("open");
-  card.style.transform = "scale(1)"
   blurSiblings(false);
+  elem.classList.remove("open")
+  card.style.transform = "scale(1)"
+  let currentPosition = elem.parentElement.style.transform
+  currentPosition = parseInt(currentPosition.replace(/[^0-9\-]/g, "")) || 0
   let scrollBacktoInitialPosition = parseInt(elem.parentElement.getAttribute('data-scrolltomiddle'))
-  elem.parentElement.style.transform = `translateX(-${scrollBacktoInitialPosition}px)`
-  console.log(scrollBacktoInitialPosition)
+  let result = currentPosition + scrollBacktoInitialPosition
+
+  /* Scroll only back to initial position on end and beginning */
+  if (currentPosition > 0) elem.parentElement.style.transform = `translateX(0)`
+  let widthOfAllElems = 0 
+  for (let children of elem.parentElement.children) {
+    widthOfAllElems += children.offsetWidth - 6
+  }
+  widthOfAllElems = widthOfAllElems - elem.parentElement.offsetWidth - 5
+  if (currentPosition < -widthOfAllElems) {
+    elem.parentElement.style.transform = `translateX(-${widthOfAllElems}px)`
+  }
+
+  /** Scrolls records on close back to initial position */
+  // elem.parentElement.style.transform = `translateX(${result}px)`
+  // console.log('currentPosition', currentPosition, 'scrollBacktoInitialPosition', scrollBacktoInitialPosition, 'result', result)
+  console.log('currentPosition', currentPosition, 'if', widthOfAllElems)
+  elem.parentElement.setAttribute('data-scrolltomiddle', 0)
 }
 
 const openRecord = (elem) => {
+  if (elem.classList.contains('open')) return      
   const card = elem.querySelector('.card'),
         back = card.querySelector('.back'),
         headline = back.querySelector('h4'),
         subhead = back.querySelector('h5'),
         tracks = back.querySelector('div');
-        
-  let scale = calcScale(elem); 
 
+  let scale = calcScale(elem);  
   card.style.transform = "scale(" + scale +  ") rotateY(180deg)"
   elem.classList.add("open");
   let fontsize = 1.4 / scale;
@@ -166,9 +185,11 @@ const openRecord = (elem) => {
   let parentElemCenter = (parentElemWidth / 2) + elem.parentElement.offsetLeft
   let elemCenter = (elemWidth / 2) + elem.offsetLeft
   let scrollToMiddleDistance = Math.round(parentElemCenter - elemCenter)
+  let currentPosition = elem.parentElement.style.transform
+  currentPosition = parseInt(currentPosition.replace(/[^0-9\-]/g, "")) || 0
   elem.parentElement.style.transform = `translateX(${scrollToMiddleDistance}px)`
-  elem.parentElement.setAttribute('data-scrolltomiddle', scrollToMiddleDistance)
-  console.log('ParentCenter:', parentElemCenter,'elemCenter', elemCenter, 'parentElemWidth', parentElemWidth, 'elemWidth', elemWidth, 'scrollToMiddleDistance', scrollToMiddleDistance)
+  elem.parentElement.setAttribute('data-scrolltomiddle',currentPosition - scrollToMiddleDistance)
+  console.log('scrollToMiddleDistance', scrollToMiddleDistance, 'result', (currentPosition - scrollToMiddleDistance), 'parentElemCenter', parentElemCenter, 'elemCenter', elemCenter)
 }
 
 let records = document.querySelectorAll(".record")
@@ -233,6 +254,7 @@ const slider = (id, slideElem, margin) => {
     if (position <= innerElemWidth - sliderElemWidth) {position += scrollWidth}
     if (position + sliderElemWidth > innerElemWidth) {position = innerElemWidth - sliderElemWidth}
     sliderContent.style.transform = `translateX(-${position}px)`
+    console.log(sliderContent.style.transform = `translateX(-${position}px)`)
     blurSiblings(false)
     const openRecord = document.querySelector('.record.open')
     if (openRecord) {closeRecord(openRecord)}
@@ -240,11 +262,13 @@ const slider = (id, slideElem, margin) => {
 
   const slideToRight = () => {
     const [scrollWidth, sliderElemWidth, innerElemWidth] = getScrollWidth();
-
     if (position <= innerElemWidth - sliderElemWidth) {position -= scrollWidth}
     if (position <= 0) {position = 0}
     sliderContent.style.transform = `translateX(-${position}px)`
     blurSiblings(false)
+    console.log(sliderContent.style.transform = `translateX(-${position}px)`)
+    const openRecord = document.querySelector('.record.open')
+    if (openRecord) {closeRecord(openRecord)}
   }
   
 
@@ -312,7 +336,7 @@ const removeClassFromList = (list, className) => {
 dropdown()
 slider("career", ".slide", 0);
 filterDropdown("career");
-terminScroller();
+// terminScroller();
 
 filterDropdown("work");
 if (!isMobile) {

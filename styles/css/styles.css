@@ -88,8 +88,24 @@ html {
   font-size: 22px;
 }
 
+::-webkit-scrollbar {
+  margin: .1rem;
+  padding: .1rem;
+  width: .5rem;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: .25rem;
+  background: #ea3d94;
+}
+
 html {
   scroll-behavior: smooth;
+  scrollbar-color: #ea3d94 rgba(0, 0, 0, 0.1);
 }
 
 a {
@@ -121,15 +137,12 @@ html .legal p {
   font-size: 1rem;
   margin-bottom: 3rem;
 }
-html .legal h2 {
-  font-size: 4rem;
-}
-html .legal h3 {
-  font-size: 1.75rem;
-  line-height: 1.2;
-}
 html .legal .content {
   color: #fff;
+}
+html .legal .content h2 {
+  font-size: 3rem;
+  margin: 0;
 }
 html .legal .content a {
   color: #fff;
@@ -607,14 +620,8 @@ section {
   height: 70vh;
 }
 #live #termine #termin-scroller {
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid transparent;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
-}
-#live #termine #termin-scroller.invisible {
-  border-bottom: 1px solid #fff;
-  border-top: 1px solid transparent;
 }
 #live #termine #termin-scroller .scroll-content {
   transition: all .4s ease;
@@ -651,18 +658,18 @@ section {
   flex: 1 1 auto;
 }
 #live #termine .concert > a {
-  display: inline-block;
-  background-color: rgba(255, 255, 255, 0.7);
-  font-size: .85rem;
-  padding: 0 10px;
-  margin-left: 2rem;
-}
-#live #termine .concert a {
   align-self: flex-end;
-  align-items: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  margin: 2px;
   display: flex;
+  font-size: .85rem;
   justify-content: center;
+  margin-left: 2rem;
+  padding: 0 10px;
   transition: all .5s ease;
+}
+#live #termine .concert > a:hover {
+  background-color: #fff;
 }
 #live #termine .up,
 #live #termine .down {
@@ -835,7 +842,8 @@ footer > div {
     font-size: 20px;
   }
 
-  nav #menuToggle .menu-icon {
+  nav #menuToggle input,
+  nav #menuToggle input ~ .menu-icon {
     display: none;
   }
 
@@ -886,6 +894,15 @@ footer > div {
     width: 55vw;
   }
 
+  html .legal .content h2 {
+    font-size: 4rem;
+    -moz-hyphens: auto;
+    -o-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+  }
+
   footer {
     flex-direction: row;
   }
@@ -896,7 +913,7 @@ footer > div {
   }
 
   h2 {
-    font-size: 7.2rem;
+    font-size: 5.5rem;
   }
 
   .content {
@@ -913,6 +930,7 @@ footer > div {
     display: flex;
     position: relative;
     margin: 3rem 0;
+    padding-left: 4rem;
   }
   .head .line {
     position: absolute;
@@ -920,7 +938,7 @@ footer > div {
   }
   .head h2 {
     margin: 0;
-    margin-bottom: -1.425rem;
+    margin-bottom: -1.1rem;
   }
 
   h3 {
@@ -1033,9 +1051,6 @@ footer > div {
   }
 
   /* Career Desktop */
-  #career .head {
-    padding-left: 5%;
-  }
   #career .head .line {
     left: 0;
   }
@@ -1317,6 +1332,9 @@ footer > div {
   #contact {
     flex-direction: row;
   }
+  #contact .left {
+    width: 55%;
+  }
   #contact .head {
     margin: 3rem 0 5rem;
   }
@@ -1329,12 +1347,6 @@ footer > div {
     justify-content: center;
     flex-direction: row;
     padding: 0 3% 0 6.5%;
-  }
-  #contact .content > div {
-    width: 55%;
-  }
-  #contact .content > div:last-child {
-    width: 45%;
   }
   #contact .content .desc {
     display: flex;
@@ -1351,6 +1363,7 @@ footer > div {
     display: inline-block;
     font-size: 0;
     padding: 0 10px;
+    width: 45%;
   }
   #contact .pic > img {
     height: 100%;
@@ -1358,25 +1371,39 @@ footer > div {
     width: 100%;
   }
 }
-.legal {
+html .legal {
   font-size: 18px;
   line-height: 1.6;
 }
-.legal .content {
+html .legal .content {
   padding: 5rem 0 2rem;
   position: static;
   max-width: 64rem;
   margin: 0 auto;
   width: 86%;
 }
-.legal .content p {
+html .legal .content p {
   font-size: 1rem;
   margin-bottom: 3rem;
 }
-.legal .content h2 {
+html .legal .content h2 {
   font-size: 6rem;
 }
-.legal .content h3 {
+html .legal .content h3 {
   font-size: 1.75rem;
   margin-bottom: .5rem;
+}
+
+@media only screen and (min-width: 1320px) {
+  h2 {
+    font-size: 7.2rem;
+  }
+
+  .head h2 {
+    margin-bottom: -1.425rem;
+  }
+
+  #contact .pic {
+    margin-right: 5%;
+  }
 }
