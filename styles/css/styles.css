@@ -241,14 +241,21 @@ nav .sub-nav.open {
   display: block;
   transition: all .5s ease;
 }
+nav #menuToggle {
+  -webkit-user-select: none;
+  user-select: none;
+}
 nav #menuToggle input {
+  border: 0;
+  cursor: pointer;
   display: block;
-  height: 28px;
+  height: 17px;
   position: absolute;
   right: 0;
-  width: 36px;
+  width: 23px;
   z-index: 1;
   cursor: pointer;
+  -webkit-touch-callout: none;
   opacity: 0;
   /* hide this */
   z-index: 2;
@@ -257,17 +264,35 @@ nav #menuToggle input {
 nav #menuToggle input:checked ~ .main-nav {
   display: flex;
 }
+nav #menuToggle input:checked ~ .menu-icon > span {
+  transform-origin: 1px 2px;
+  transform: rotate(-45deg);
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+}
+nav #menuToggle input:checked ~ .menu-icon > span:first-child {
+  transform: rotate(45deg);
+}
+nav #menuToggle input:checked ~ .menu-icon > span:nth-child(2) {
+  opacity: 0;
+  transform: rotate(0deg);
+}
 nav #menuToggle input ~ .menu-icon {
-  background: url(../../img/menu.svg) center center no-repeat;
   display: flex;
-  height: 28px;
+  height: 17px;
   position: absolute;
   justify-content: space-between;
   border: none;
   flex-direction: column;
   right: 0;
-  width: 36px;
+  width: 23px;
   z-index: 1;
+}
+nav #menuToggle input ~ .menu-icon > span {
+  background-color: #000;
+  transform-origin: 2px 1px;
+  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), background-color 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+  height: 3px;
+  width: 23px;
 }
 nav .lang-nav > a {
   margin: 0 .25rem;
@@ -376,7 +401,7 @@ section {
   align-self: center;
   align-items: flex-start;
   position: relative;
-  min-width: 150px;
+  min-width: calc(100% - 4rem);
   z-index: 10;
 }
 
@@ -386,7 +411,7 @@ section {
   display: inline-flex;
   flex-direction: column;
   font-size: 0.85rem;
-  min-width: 150px;
+  min-width: 100%;
   overflow: hidden;
   position: absolute;
   transition: all .4s ease;
@@ -477,6 +502,7 @@ section {
 .header {
   display: flex;
   justify-content: space-between;
+  margin: 2rem 0 1rem;
   width: 95%;
 }
 
@@ -530,8 +556,8 @@ section {
   display: flex;
   position: absolute;
   top: 50%;
-  left: 3%;
-  right: 3%;
+  left: 0;
+  right: 0;
 }
 
 .prev,
@@ -620,7 +646,8 @@ section {
   height: 70vh;
 }
 #live #termine #termin-scroller {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
 }
 #live #termine #termin-scroller .scroll-content {
@@ -636,12 +663,14 @@ section {
   margin: 0;
 }
 #live #termine .concert {
+  align-items: flex-start;
   display: flex;
   flex-wrap: wrap;
-  margin: .5rem 0;
+  flex-direction: column;
+  margin: 0.5rem 0 1rem;
 }
 #live #termine .concert > span {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
   margin-right: 2rem;
 }
 #live #termine .concert > span > sub {
@@ -651,22 +680,18 @@ section {
   margin: -.25rem 0 0 .25rem;
   display: inline-block;
 }
-#live #termine .concert .date {
-  width: 100%;
-}
 #live #termine .concert .location {
   flex: 1 1 auto;
 }
 #live #termine .concert > a {
-  align-self: flex-end;
   background-color: rgba(255, 255, 255, 0.7);
   margin: 2px;
   display: flex;
   font-size: .85rem;
   justify-content: center;
-  margin-left: 2rem;
   padding: 0 10px;
   transition: all .5s ease;
+  white-space: nowrap;
 }
 #live #termine .concert > a:hover {
   background-color: #fff;
@@ -708,12 +733,26 @@ section {
   background-color: #fff;
   position: relative;
 }
+#work .header {
+  flex-direction: column;
+}
+#work .head {
+  flex-direction: column;
+}
 #work .head h2, #work .head p {
   color: #ea3d94;
 }
+#work .head .line {
+  position: static;
+}
 #work .head p {
-  bottom: -4rem;
-  position: absolute;
+  margin: 1rem 0 1rem 2rem;
+}
+#work .lp {
+  display: none;
+}
+#work .cd {
+  display: block;
 }
 #work .content {
   position: static;
@@ -723,10 +762,6 @@ section {
   display: inline-flex;
   flex-direction: column;
   width: auto;
-}
-#work .record .card-container {
-  height: 77vw;
-  width: 77vw;
 }
 #work .record .card {
   height: 100%;
@@ -760,6 +795,10 @@ section {
 #work .record .card .back p span {
   display: inline-block;
   font-weight: 700;
+}
+#work .card-container {
+  height: 77vw;
+  width: 77vw;
 }
 
 .title span {
@@ -860,6 +899,10 @@ footer > div {
     background-color: #fff;
   }
 
+  .filter {
+    min-width: 150px;
+  }
+
   #start {
     background-image: url("../../img/gittehaenning_start_BG_tablet.jpg");
     background-size: 100% auto;
@@ -869,14 +912,43 @@ footer > div {
     width: 55vw;
   }
 
+  #work .header {
+    flex-direction: row;
+  }
+  #work .header .head {
+    margin-bottom: 3rem;
+    padding-left: 5%;
+  }
+  #work .header .head .line {
+    left: 0;
+  }
+  #work .card-container {
+    margin-left: 1rem;
+    height: 33vw;
+    width: 33vw;
+  }
+
   #live {
+    align-items: flex-end;
     background-image: url("../../img/gittehaenning_live_BG_tablet.jpg");
     background-size: 100% auto;
+    display: flex;
+    flex-direction: column;
+  }
+  #live .header {
+    display: block;
+    width: 50%;
+  }
+  #live .header .head {
+    padding: 0;
   }
   #live #termine {
     align-self: flex-end;
     height: 60vh;
     width: 55vw;
+  }
+  #live #termine .concert {
+    flex-direction: row;
   }
   #live #termine .date {
     width: auto;
@@ -1074,10 +1146,15 @@ footer > div {
     align-items: flex-start;
     display: flex;
     justify-content: start;
-    padding: 5% 0 2%;
+    padding: 2% 0 3%;
     position: relative;
     width: 100%;
     z-index: 1;
+  }
+
+  .slider-nav {
+    left: 3%;
+    right: 3%;
   }
 
   .point {
@@ -1102,17 +1179,13 @@ footer > div {
   #live {
     background-image: url("../../img/gittehaenning_live_BG.jpg");
     background-size: 100% auto;
-    height: 0;
-    padding-top: 51%;
-    position: relative;
+    height: 51vw;
   }
   #live .content {
     display: flex;
-    left: auto;
-    height: auto;
+    position: static;
     flex-direction: column;
     justify-content: center;
-    right: 0;
     width: 50%;
   }
   #live .content .desc {
@@ -1125,8 +1198,8 @@ footer > div {
   }
   #live #termine {
     align-self: flex-start;
-    height: 50vh;
-    margin-bottom: 5rem;
+    height: 31vw;
+    margin-bottom: 3rem;
     width: auto;
   }
   #live #termine #termin-scroller {
@@ -1137,8 +1210,8 @@ footer > div {
     display: inline-block;
     padding: .5rem 0;
   }
-  #live #termine .concert .date {
-    width: auto;
+  #live #termine .concert {
+    flex-wrap: nowrap;
   }
 
   .slider {
@@ -1152,12 +1225,11 @@ footer > div {
     align-items: center;
   }
 
-  #work .head {
-    margin-bottom: 3rem;
-    padding-left: 5%;
+  #work .header .head {
+    margin-bottom: 2rem;
   }
-  #work .head .line {
-    left: 0;
+  #work .header .head p {
+    margin-left: 0;
   }
   #work .record {
     min-height: 300px;
@@ -1244,25 +1316,25 @@ footer > div {
     width: 280px;
   }
   #work .record:nth-child(10) {
-    margin: 0 0 0 .5rem;
+    margin: -8rem 0 0 .5rem;
   }
   #work .record:nth-child(10) .card-container {
-    height: 280px;
-    width: 280px;
+    height: 330px;
+    width: 330px;
   }
   #work .record:nth-child(11) {
-    margin: 0 0 0 .5rem;
+    margin: -2rem 0 0 .5rem;
   }
   #work .record:nth-child(11) .card-container {
-    height: 280px;
-    width: 280px;
+    height: 300px;
+    width: 300px;
   }
   #work .record:nth-child(12) {
-    margin: 0 0 0 .5rem;
+    margin: -18rem 0 0 .5rem;
   }
   #work .record:nth-child(12) .card-container {
-    height: 280px;
-    width: 280px;
+    height: 350px;
+    width: 350px;
   }
   #work .record:nth-child(13) {
     margin: 0 0 0 .5rem;
@@ -1272,16 +1344,21 @@ footer > div {
     width: 280px;
   }
   #work .record:nth-child(14) {
-    margin: 0 0 0 .5rem;
+    margin: -5rem 0 0 .5rem;
   }
   #work .record:nth-child(14) .card-container {
-    height: 280px;
-    width: 280px;
+    height: 310px;
+    width: 310px;
   }
   #work .record.open {
     z-index: 10;
   }
+  #work .slider-nav {
+    left: 3%;
+    right: 3%;
+  }
   #work .card-container {
+    margin: 0;
     margin-bottom: .75rem;
     position: relative;
     transition: all 0.3s ease-out;
@@ -1327,6 +1404,7 @@ footer > div {
   }
   #work .card .back .tracks {
     overflow: auto;
+    padding-right: .5rem;
   }
 
   #contact {

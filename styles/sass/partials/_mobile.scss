@@ -170,29 +170,52 @@ nav {
     }
   }
   #menuToggle {
+    -webkit-user-select: none;
+    user-select: none;
     input {
+      border: 0;
+      cursor: pointer;
       display: block;
-      height: 28px;
+      height: 17px;
       position: absolute;
       right: 0;
-      width: 36px;
+      width: 23px;
       z-index: 1;
       cursor: pointer;
+      -webkit-touch-callout: none;
       opacity: 0; /* hide this */
       z-index: 2; /* and place it over the hamburger */
-      &:checked ~ .main-nav {display: flex;}
-
+      &:checked {
+        ~ .main-nav {display: flex;}
+        ~ .menu-icon > span {
+          transform-origin: 1px 2px;
+          transform: rotate(-45deg);
+          transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+          &:first-child {transform: rotate(45deg);}
+          &:nth-child(2) {
+            opacity: 0;
+            transform: rotate(0deg);
+          }
+        }
+      }
       ~ .menu-icon {
-        background: url(../../img/menu.svg) center center no-repeat;
+        // background: url(../../img/menu.svg) center center no-repeat;
         display: flex;
-        height: 28px;
+        height: 17px;
         position: absolute;
         justify-content: space-between;
         border: none;
         flex-direction: column;
         right: 0;
-        width: 36px;
+        width: 23px;
         z-index: 1;
+        > span {
+          background-color: #000;
+          transform-origin: 2px 1px;
+          transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), background-color 0.5s cubic-bezier(0.77,0.2,0.05,1.0),opacity 0.55s ease;
+          height: 3px;
+          width: 23px;
+        }
       }
     }
   }
@@ -305,7 +328,7 @@ section {
   align-self: center;
   align-items: flex-start;
   position: relative;
-  min-width: 150px;
+  min-width: calc(100% - 4rem);
   z-index: 10;
 }
 
@@ -315,7 +338,7 @@ section {
   display: inline-flex;
   flex-direction: column;
   font-size: 0.85rem;
-  min-width: 150px;
+  min-width: 100%;
   overflow: hidden;
   position: absolute;
   transition: all .4s ease;
@@ -402,6 +425,7 @@ section {
 .header {
   display: flex;
   justify-content: space-between;
+  margin: 2rem 0 1rem;
   width: 95%;
 }
 
@@ -457,8 +481,8 @@ section {
   display: flex;
   position: absolute;
   top: 50%;
-  left: 3%;
-  right: 3%;
+  left: 0;
+  right: 0;
 }
 
 .prev,
@@ -539,7 +563,8 @@ section {
     #termin-scroller {
       // border-top: 1px solid #fff;
       // border-bottom: 1px solid transparent;
-      overflow: auto;
+      overflow-x: hidden;
+      overflow-y: auto;
       position: relative;
       // &.invisible {
       //   border-bottom: 1px solid #fff;
@@ -557,11 +582,13 @@ section {
       &:first-child {margin: 0;}
     }
     .concert {
+      align-items: flex-start;
       display: flex;
       flex-wrap: wrap;
-      margin: .5rem 0;
+      flex-direction: column;
+      margin: 0.5rem 0 1rem;
       > span {
-        flex: 0 0 auto;
+        flex: 0 1 auto;
         margin-right: 2rem;
         > sub {
           color: rgba(255,255,255,.5);
@@ -571,18 +598,16 @@ section {
           display: inline-block;
         }
       }
-      .date {width: 100%;}
       .location {flex: 1 1 auto;}
       > a {
-        align-self: flex-end;
         background-color: rgba(255,255,255,0.7);
         margin: 2px;
         display: flex;
         font-size: .85rem;
         justify-content: center;
-        margin-left: 2rem;
         padding: 0 10px;
         transition: all .5s ease;
+        white-space: nowrap;
         &:hover {
           background-color: #fff;
         }
@@ -622,13 +647,21 @@ section {
 #work {
   background-color: #fff;
   position: relative;
+  .header {
+    flex-direction: column;
+  }
   .head {
+    flex-direction: column;
     h2, p {color: $prime-color;}
+    .line {
+      position: static;
+    }
     p {
-      bottom: -4rem;
-      position: absolute;
+      margin: 1rem 0 1rem 2rem;
     }
   }
+  .lp {display: none;}
+  .cd {display: block;}
   .content {
     position: static;
   }
@@ -637,10 +670,6 @@ section {
     display: inline-flex;
     flex-direction: column;
     width: auto;
-    .card-container {
-      height: 77vw;
-      width: 77vw;
-    }
     .card {
       height: 100%;
       position: relative;
@@ -674,6 +703,10 @@ section {
         }
       }
     }
+  }
+  .card-container {
+    height: 77vw;
+    width: 77vw;
   }
 }
 

@@ -340,7 +340,7 @@ filterDropdown("career");
 
 filterDropdown("work");
 if (!isMobile) {
-  slider("work", ".card", 5);
+  slider("work", ".card", -5);
   recordInfo();
 } else {
   slider("work", ".card", 0);

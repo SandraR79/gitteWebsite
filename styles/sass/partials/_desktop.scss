@@ -170,10 +170,15 @@
     align-items: flex-start;
     display: flex;
     justify-content: start;
-    padding: 5% 0 2%;
+    padding: 2% 0 3%;
     position: relative;
     width: 100%;
     z-index: 1;
+  }
+
+  .slider-nav {
+    left: 3%;
+    right: 3%;
   }
 
   .point {
@@ -198,16 +203,12 @@
   #live {
     background-image: url("../../img/gittehaenning_live_BG.jpg");
     background-size: 100% auto;
-    height: 0;
-    padding-top: 51%;
-    position: relative;
+    height: 51vw;
     .content {
       display: flex;
-      left: auto;
-      height: auto;
+      position: static;
       flex-direction: column;
       justify-content: center;
-      right: 0;
       width: 50%;
       .desc {
         width: 90%;
@@ -220,8 +221,8 @@
     }
     #termine {
       align-self: flex-start;
-      height: 50vh;
-      margin-bottom: 5rem;
+      height: 31vw;
+      margin-bottom: 3rem;
       width: auto;
       #termin-scroller {
         display: inline-block;
@@ -232,9 +233,7 @@
         }
       }
       .concert {
-        .date {
-          width: auto;
-        }
+        flex-wrap: nowrap;
       }
     }
   }
@@ -251,12 +250,11 @@
     // padding: 5.5rem 0 3rem;
   }
 
-  #work {      
-    .head {
-      margin-bottom: 3rem;
-      padding-left: 5%;
-      .line {
-        left:0;
+  #work {
+    .header {
+      .head {
+        margin-bottom: 2rem;
+        p {margin-left: 0;}
       }
     }
     .record {
@@ -343,24 +341,24 @@
         }
       }
       &:nth-child(10) {
-        margin: 0 0 0 .5rem;
+        margin: -8rem 0 0 .5rem;
         .card-container {
-          height: 280px;
-          width: 280px;
+          height: 330px;
+          width: 330px;
         }
       }
       &:nth-child(11) {
-        margin: 0 0 0 .5rem;
+        margin: -2rem 0 0 .5rem;
         .card-container {
-          height: 280px;
-          width: 280px;
+          height: 300px;
+          width: 300px;
         }
       }
       &:nth-child(12) {
-        margin: 0 0 0 .5rem;
+        margin: -18rem 0 0 .5rem;
         .card-container {
-          height: 280px;
-          width: 280px;
+          height: 350px;
+          width: 350px;
         }
       }
       &:nth-child(13) {
@@ -371,17 +369,22 @@
         }
       }
       &:nth-child(14) {
-        margin: 0 0 0 .5rem;
+        margin: -5rem 0 0 .5rem;
         .card-container {
-          height: 280px;
-          width: 280px;
+          height: 310px;
+          width: 310px;
         }
       }
       &.open {
         z-index: 10;
       }
     }
+    .slider-nav {
+      left: 3%;
+      right: 3%;
+    }
     .card-container {
+      margin: 0;
       margin-bottom: .75rem;
       position: relative;
       transition: all 0.3s ease-out;
@@ -425,6 +428,7 @@
         }
         .tracks {
           overflow: auto;
+          padding-right: .5rem;
         }
       }
     }
