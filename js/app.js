@@ -254,7 +254,7 @@ const slider = (id, slideElem, margin) => {
     if (position <= innerElemWidth - sliderElemWidth) {position += scrollWidth}
     if (position + sliderElemWidth > innerElemWidth) {position = innerElemWidth - sliderElemWidth}
     sliderContent.style.transform = `translateX(-${position}px)`
-    console.log(sliderContent.style.transform = `translateX(-${position}px)`)
+    // console.log(sliderContent.style.transform = `translateX(-${position}px)`)
     blurSiblings(false)
     const openRecord = document.querySelector('.record.open')
     if (openRecord) {closeRecord(openRecord)}
@@ -266,7 +266,7 @@ const slider = (id, slideElem, margin) => {
     if (position <= 0) {position = 0}
     sliderContent.style.transform = `translateX(-${position}px)`
     blurSiblings(false)
-    console.log(sliderContent.style.transform = `translateX(-${position}px)`)
+    // console.log(sliderContent.style.transform = `translateX(-${position}px)`)
     const openRecord = document.querySelector('.record.open')
     if (openRecord) {closeRecord(openRecord)}
   }
@@ -339,9 +339,11 @@ filterDropdown("career");
 // terminScroller();
 
 filterDropdown("work");
-if (!isMobile) {
-  slider("work", ".card", -5);
+if (!isMobile && window.matchMedia("(min-width: 600px)").matches) {
+  slider("sliderLP", ".card", -5);
+  slider("sliderCD", ".card", -5);
   recordInfo();
 } else {
-  slider("work", ".card", 0);
+  slider("sliderLP", ".card", 0);
+  slider("sliderCD", ".card", 0);
 }

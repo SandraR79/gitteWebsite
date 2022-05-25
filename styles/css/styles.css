@@ -519,10 +519,10 @@ section {
 }
 #timeline .slider-nav {
   top: 30%;
-  z-index: 10;
+  z-index: 1;
 }
 #timeline .slider-nav .line {
-  height: 0;
+  height: 1;
 }
 #timeline .slider-nav .prev svg,
 #timeline .slider-nav .next svg {
@@ -748,7 +748,7 @@ section {
 #work .head p {
   margin: 1rem 0 1rem 2rem;
 }
-#work .lp {
+#work #sliderLP {
   display: none;
 }
 #work .cd {
@@ -1452,6 +1452,9 @@ footer > div {
 html .legal {
   font-size: 18px;
   line-height: 1.6;
+}
+html .legal .head {
+  padding: 0;
 }
 html .legal .content {
   padding: 5rem 0 2rem;
