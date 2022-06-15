@@ -74,7 +74,7 @@
 
     //Site Animation
     //Start
-    const Tl = gsap.timeline({defaults: {duration: .8, ease: "back.out"}})
+    const Tl = gsap.timeline({defaults: {duration: .5, ease: "back.out"}})
     menuPoints.forEach((point) => {Tl.fromTo(point, {opacity: 0, y: -20}, {opacity: 1, y:0}, "<10%")})
     Tl.fromTo('.lang-nav', {opacity: 0, y: -20}, {opacity: 1, y:0}, "<25%")
 

@@ -105,6 +105,7 @@ html {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 50px;
   scrollbar-color: #ea3d94 rgba(0, 0, 0, 0.1);
 }
 
@@ -570,6 +571,15 @@ section {
   line-height: 50%;
   transition: all .3s ease;
 }
+.prev.inactive,
+.next.inactive {
+  cursor: not-allowed;
+  opacity: .3;
+}
+.prev.inactive:hover,
+.next.inactive:hover {
+  transform: translate(0, -50%);
+}
 
 .prev {
   left: 2%;
@@ -749,10 +759,10 @@ section {
   margin: 1rem 0 1rem 2rem;
 }
 #work #sliderLP {
-  display: none;
-}
-#work .cd {
   display: block;
+}
+#work #sliderCD {
+  display: none;
 }
 #work .content {
   position: static;
@@ -805,35 +815,26 @@ section {
   color: #ea3d94;
 }
 
-.tracks > div {
+.tracks {
+  margin-top: .5rem;
+}
+
+.tracklist > div {
   display: flex;
   justify-content: space-between;
 }
 
 .close {
-  height: 40px;
+  height: 30px;
   position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 40px;
+  right: 15px;
+  top: 15px;
+  width: 30px;
 }
-.close::after, .close::before {
-  background-color: #ea3d94;
-  content: '';
-  display: block;
-  top: 50%;
-  left: 50%;
-  position: absolute;
-}
-.close::after {
-  transform: translateX(-50%) rotate(45deg);
-  height: 1px;
-  width: 80%;
-}
-.close::before {
-  height: 80%;
-  transform: translateY(-50%) rotate(-135deg);
-  width: 1px;
+.close svg {
+  fill: #ea3d94;
+  height: 100%;
+  width: auto;
 }
 
 /* Contact Mobile */
@@ -920,7 +921,9 @@ footer > div {
     padding-left: 5%;
   }
   #work .header .head .line {
+    position: absolute;
     left: 0;
+    bottom: 3.6rem;
   }
   #work .card-container {
     margin-left: 1rem;
@@ -1402,7 +1405,7 @@ footer > div {
     display: inline-block;
     font-weight: 700;
   }
-  #work .card .back .tracks {
+  #work .card .back .tracklist {
     overflow: auto;
     padding-right: .5rem;
   }

@@ -148,8 +148,6 @@ const closeRecord = (elem) => {
 
   /** Scrolls records on close back to initial position */
   // elem.parentElement.style.transform = `translateX(${result}px)`
-  // console.log('currentPosition', currentPosition, 'scrollBacktoInitialPosition', scrollBacktoInitialPosition, 'result', result)
-  console.log('currentPosition', currentPosition, 'if', widthOfAllElems)
   elem.parentElement.setAttribute('data-scrolltomiddle', 0)
 }
 
@@ -159,7 +157,8 @@ const openRecord = (elem) => {
         back = card.querySelector('.back'),
         headline = back.querySelector('h4'),
         subhead = back.querySelector('h5'),
-        tracks = back.querySelector('div');
+        tracks = back.querySelector('div'),
+        close = back.querySelector('.close');
 
   let scale = calcScale(elem);  
   card.style.transform = "scale(" + scale +  ") rotateY(180deg)"
@@ -170,9 +169,14 @@ const openRecord = (elem) => {
   let margin = .5 / scale;
   let padding = 1.5 / scale;
   let lineHeight = 1.75 / scale;
+  let closeSize = 30 /scale;
   back.style.fontSize = fontsize + "rem"
   back.style.lineHeight = lineHeight + "rem"
   back.style.padding = padding + "rem"
+  close.style.width = closeSize + "px"
+  close.style.height = closeSize + "px"
+  close.style.right = closeSize / 2 + "px"
+  close.style.top = closeSize / 2 + "px"
   tracks.style.marginBottom = margin + "rem"
   headline.style.fontSize = headsize + "rem"
   headline.style.marginBottom = margin + "rem"
@@ -189,7 +193,7 @@ const openRecord = (elem) => {
   currentPosition = parseInt(currentPosition.replace(/[^0-9\-]/g, "")) || 0
   elem.parentElement.style.transform = `translateX(${scrollToMiddleDistance}px)`
   elem.parentElement.setAttribute('data-scrolltomiddle',currentPosition - scrollToMiddleDistance)
-  console.log('scrollToMiddleDistance', scrollToMiddleDistance, 'result', (currentPosition - scrollToMiddleDistance), 'parentElemCenter', parentElemCenter, 'elemCenter', elemCenter)
+  // console.log('scrollToMiddleDistance', scrollToMiddleDistance, 'result', (currentPosition - scrollToMiddleDistance), 'parentElemCenter', parentElemCenter, 'elemCenter', elemCenter)
 }
 
 let records = document.querySelectorAll(".record")
@@ -251,8 +255,13 @@ const slider = (id, slideElem, margin) => {
 
   const slideToLeft = () => {
     const [scrollWidth, sliderElemWidth, innerElemWidth] = getScrollWidth();
+    const prev = nextBtn.parentElement.querySelector('.prev')
+    const next = nextBtn.parentElement.querySelector('.next')
+    prev.classList.remove('inactive')
     if (position <= innerElemWidth - sliderElemWidth) {position += scrollWidth}
     if (position + sliderElemWidth > innerElemWidth) {position = innerElemWidth - sliderElemWidth}
+    if (position >= 0) {prev.classList.remove('inactive')} else {prev.classList.add('inactive')}
+    if (position >= innerElemWidth - sliderElemWidth) {next.classList.add('inactive')} else {next.classList.remove('inactive')}
     sliderContent.style.transform = `translateX(-${position}px)`
     // console.log(sliderContent.style.transform = `translateX(-${position}px)`)
     blurSiblings(false)
@@ -262,8 +271,16 @@ const slider = (id, slideElem, margin) => {
 
   const slideToRight = () => {
     const [scrollWidth, sliderElemWidth, innerElemWidth] = getScrollWidth();
+    const prev = nextBtn.parentElement.querySelector('.prev')
+    const next = nextBtn.parentElement.querySelector('.next')
     if (position <= innerElemWidth - sliderElemWidth) {position -= scrollWidth}
-    if (position <= 0) {position = 0}
+    next.classList.remove('inactive')
+    if (position <= 0) {
+      position = 0
+      prev.classList.add('inactive')
+    } else {prev.classList.remove('inactive')}
+
+    if (position === scrollWidth - innerElemWidth) {}
     sliderContent.style.transform = `translateX(-${position}px)`
     blurSiblings(false)
     // console.log(sliderContent.style.transform = `translateX(-${position}px)`)
@@ -275,9 +292,9 @@ const slider = (id, slideElem, margin) => {
   // Slider controls
   const nextBtn = slider.querySelector(".next")
   const prevBtn = slider.querySelector(".prev")
+  
   nextBtn.addEventListener('click', () => slideToLeft())
   prevBtn.addEventListener('click', () => slideToRight())
-
 
   // Slider Filter Function
   const scrollToYear = (year) => {
@@ -325,6 +342,10 @@ const slider = (id, slideElem, margin) => {
     handleGesture()
   })
 }
+
+const filterLPBtn = document.getElementById('filterLp')
+// console.log(filterLPBtn)
+filterLPBtn.addEventListener('click', () => {console.log('hui')})
 
 //Helper
 const removeClassFromList = (list, className) => {
