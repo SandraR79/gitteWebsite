@@ -317,7 +317,6 @@ const slider = (id, slideElem, margin) => {
   btnTousends.addEventListener('click', () => scrollToYear("00"))
   btnTens.addEventListener('click', () => scrollToYear("10"))
 
-
   // Sliding on touchdevices
   let touchstartX = 0
   let touchendX = 0
@@ -344,8 +343,23 @@ const slider = (id, slideElem, margin) => {
 }
 
 const filterLPBtn = document.getElementById('filterLp')
-// console.log(filterLPBtn)
-filterLPBtn.addEventListener('click', () => {console.log('hui')})
+const filterCDBtn = document.getElementById('filterCd')
+const sliderLP = document.getElementById('sliderLP')
+const sliderCD = document.getElementById('sliderCD')
+const recordsCDAni = sliderCD.querySelectorAll(".record")
+const recordsLPAni = sliderLP.querySelectorAll(".record")
+console.log(recordsLPAni)
+
+filterLPBtn.addEventListener('click', () => {
+  sliderLP.style.display='block'
+  sliderCD.style.display='none'
+  recordsLPAni.forEach((cd) => {gsap.fromTo(cd, {opacity: 0, scale: .5}, {opacity: 1, scale: 1, duration: .7}, "<20%")})
+})
+filterCDBtn.addEventListener('click', () => {
+  sliderLP.style.display='none'
+  sliderCD.style.display='block'
+  recordsCDAni.forEach((lp) => {gsap.fromTo(lp, {opacity: 0, scale: .5}, {opacity: 1, scale: 1, duration: .7}, "<20%")})
+})
 
 //Helper
 const removeClassFromList = (list, className) => {

@@ -85,13 +85,12 @@ html {
   margin: 0;
   padding: 0;
   width: 100%;
-  font-size: 22px;
 }
 
 ::-webkit-scrollbar {
   margin: .1rem;
   padding: .1rem;
-  width: .5rem;
+  width: .4em;
 }
 
 ::-webkit-scrollbar-track {
@@ -127,12 +126,12 @@ body {
   font-family: "Unna", sans-serif;
   font-style: oblique;
   line-height: 150%;
+  font-size: 22px;
 }
 
 html .legal {
   background-color: #ea3d94;
-  font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.5;
 }
 html .legal p {
   font-size: 1rem;
@@ -143,7 +142,11 @@ html .legal .content {
 }
 html .legal .content h2 {
   font-size: 3rem;
+  hyphens: auto;
   margin: 0;
+}
+html .legal .content h3 {
+  line-height: 1.2;
 }
 html .legal .content a {
   color: #fff;
@@ -408,6 +411,7 @@ section {
 
 .filter-dropdown {
   align-self: flex-start;
+  background-color: #fff;
   color: #fff;
   display: inline-flex;
   flex-direction: column;
@@ -419,6 +423,7 @@ section {
   height: 30px;
 }
 .filter-dropdown.prime {
+  background-color: #ea3d94;
   color: #ea3d94;
 }
 .filter-dropdown.prime > li.active {
@@ -502,6 +507,7 @@ section {
 
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin: 2rem 0 1rem;
   width: 95%;
@@ -971,11 +977,6 @@ footer > div {
 
   html .legal .content h2 {
     font-size: 4rem;
-    -moz-hyphens: auto;
-    -o-hyphens: auto;
-    -webkit-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
   }
 
   footer {
@@ -1326,7 +1327,7 @@ footer > div {
     width: 330px;
   }
   #work .record:nth-child(11) {
-    margin: -2rem 0 0 .5rem;
+    margin: 4rem 0 0 .5rem;
   }
   #work .record:nth-child(11) .card-container {
     height: 300px;

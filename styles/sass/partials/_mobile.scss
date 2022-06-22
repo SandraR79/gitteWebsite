@@ -12,13 +12,12 @@ html {
   margin: 0;
   padding: 0;
   width: 100%;
-  font-size: 22px;
 }
 
 ::-webkit-scrollbar {
   margin: .1rem;
   padding: .1rem;
-  width: .5rem;
+  width: .4em;
 }
 ::-webkit-scrollbar-track {
 background: rgba(0,0,0,.1);
@@ -51,13 +50,13 @@ body {
   font-family: $text-font;
   font-style: oblique;
   line-height: 150%;
+  font-size: 22px;
 }
 
 
 html .legal {
   background-color: $prime-color;
-  font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.5;
   p {
     font-size: 1rem;
     margin-bottom: 3rem;
@@ -66,7 +65,11 @@ html .legal {
     color: #fff;
     h2 {
       font-size: 3rem;
+      hyphens: auto;
       margin: 0;
+    }
+    h3 {
+      line-height: 1.2;
     }
     a {
       color: #fff;
@@ -336,6 +339,7 @@ section {
 
 .filter-dropdown {
   align-self: flex-start;
+  background-color: #fff;
   color: #fff;
   display: inline-flex;
   flex-direction: column;
@@ -346,6 +350,7 @@ section {
   transition: all .4s ease;
   height: 30px;
   &.prime {
+    background-color: $prime-color;
     color: $prime-color;
     > li.active {border-color: $prime-color;}
   }
@@ -426,6 +431,7 @@ section {
 
 .header {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin: 2rem 0 1rem;
   width: 95%;

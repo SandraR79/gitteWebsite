@@ -62,8 +62,8 @@ const recordsTl = gsap.timeline({
 recordsTl.fromTo('#work .head .line', {x: "-100%"}, {x: 0, duration: 1, ease: "back.in"})
 recordsTl.fromTo('#work .head h2', {opacity: 0, x: 70}, {opacity: 1, x: 0, duration: .75, ease: "back.out"})
 recordsTl.fromTo('#work .head p', {opacity: 0, x: 70}, {opacity: 1, x: 0, duration: .75, ease: "back.out"}, "< 30%")
-recordsAni.forEach((record) => {recordsTl.fromTo(record, {opacity: 0, scale: .5}, {opacity: 1, scale: 1, duration: .7}, "<20%")})
 recordsTl.fromTo('#work .filter', {opacity: 0, x: 30}, {opacity: 1, x: 0, duration: .75, ease: "back.out"}, "<20%")
+recordsAni.forEach((record) => {recordsTl.fromTo(record, {opacity: 0, scale: .5}, {opacity: 1, scale: 1, duration: .7}, "<20%")})
 
 const contactTl = gsap.timeline({
   scrollTrigger: {
