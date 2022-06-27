@@ -141,7 +141,7 @@ html .legal .content {
   color: #fff;
 }
 html .legal .content h2 {
-  font-size: 3rem;
+  font-size: clamp(3rem, 10vw, 6rem);
   hyphens: auto;
   margin: 0;
 }
@@ -347,7 +347,7 @@ h5 {
 }
 
 p {
-  font-size: 1rem;
+  font-size: 1.125rem;
   margin-bottom: 1em;
   line-height: 130%;
 }
@@ -411,7 +411,7 @@ section {
 
 .filter-dropdown {
   align-self: flex-start;
-  background-color: #fff;
+  background-color: rgba(234, 61, 148, 0.5);
   color: #fff;
   display: inline-flex;
   flex-direction: column;
@@ -423,8 +423,8 @@ section {
   height: 30px;
 }
 .filter-dropdown.prime {
-  background-color: #ea3d94;
   color: #ea3d94;
+  background-color: #fff;
 }
 .filter-dropdown.prime > li.active {
   border-color: #ea3d94;
@@ -795,14 +795,14 @@ section {
 #work .record .card .back {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: auto;
   width: 100%;
 }
 #work .record .card .back {
   background-color: #fff;
   box-sizing: border-box;
   color: #000;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 #work .record .card .back p {
   font-size: .7em;
@@ -813,10 +813,13 @@ section {
   font-weight: 700;
 }
 #work .card-container {
-  height: 77vw;
+  height: auto;
   width: 77vw;
 }
 
+.title {
+  display: none;
+}
 .title span {
   color: #ea3d94;
 }
@@ -865,6 +868,10 @@ section {
   width: 50px;
 }
 #contact .pic {
+  display: none;
+}
+
+.close {
   display: none;
 }
 
@@ -919,6 +926,10 @@ footer > div {
     width: 55vw;
   }
 
+  #career .header {
+    flex-direction: row;
+  }
+
   #work .header {
     flex-direction: row;
   }
@@ -935,6 +946,9 @@ footer > div {
     margin-left: 1rem;
     height: 33vw;
     width: 33vw;
+  }
+  #work .record .back {
+    padding: 1rem;
   }
 
   #live {
@@ -975,8 +989,8 @@ footer > div {
     width: 55vw;
   }
 
-  html .legal .content h2 {
-    font-size: 4rem;
+  .close {
+    display: block;
   }
 
   footer {
@@ -1471,11 +1485,7 @@ html .legal .content p {
   font-size: 1rem;
   margin-bottom: 3rem;
 }
-html .legal .content h2 {
-  font-size: 6rem;
-}
 html .legal .content h3 {
-  font-size: 1.75rem;
   margin-bottom: .5rem;
 }
 
