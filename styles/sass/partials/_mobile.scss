@@ -664,6 +664,7 @@ section {
   position: relative;
   .header {
     flex-direction: column;
+    width: 100%;
   }
   .head {
     flex-direction: column;
@@ -730,8 +731,11 @@ section {
   span {color: $prime-color;}
 }
 
-.tracks {margin-top: .5rem;}
+.tracks {
+  display: none;
+  margin-top: .5rem;}
 .tracklist {
+  display: none;
   > div {
     display: flex;
     justify-content: space-between;

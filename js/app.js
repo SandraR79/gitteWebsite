@@ -348,17 +348,20 @@ const sliderLP = document.getElementById('sliderLP')
 const sliderCD = document.getElementById('sliderCD')
 const recordsCDAni = sliderCD.querySelectorAll(".record")
 const recordsLPAni = sliderLP.querySelectorAll(".record")
-console.log(recordsLPAni)
+const subtitle = document.querySelector('.subtitle')
+console.log(subtitle)
 
 filterLPBtn.addEventListener('click', () => {
   sliderLP.style.display='block'
   sliderCD.style.display='none'
   recordsLPAni.forEach((cd) => {gsap.fromTo(cd, {opacity: 0, scale: .5}, {opacity: 1, scale: 1, duration: .7}, "<20%")})
+  subtitle.textContent='Langspielplatten'
 })
 filterCDBtn.addEventListener('click', () => {
   sliderLP.style.display='none'
   sliderCD.style.display='block'
   recordsCDAni.forEach((lp) => {gsap.fromTo(lp, {opacity: 0, scale: .5}, {opacity: 1, scale: 1, duration: .7}, "<20%")})
+  subtitle.textContent='CDs'
 })
 
 //Helper
@@ -368,16 +371,21 @@ const removeClassFromList = (list, className) => {
   }
 }
 
-dropdown()
+// dropdown()
 slider("career", ".slide", 0);
 filterDropdown("career");
 // terminScroller();
 
 filterDropdown("work");
-if (!isMobile && window.matchMedia("(min-width: 600px)").matches) {
-  slider("sliderLP", ".card", -5);
-  slider("sliderCD", ".card", -5);
+
+if (!isMobile && window.matchMedia("(min-width: 1024px)").matches) {
+  slider("sliderLP", ".card", 0);
+  slider("sliderCD", ".card", 0);
   recordInfo();
+} else if (isMobile && window.matchMedia("(min-width: 768px)").matches) {
+  console.log('passt')
+  slider("sliderLP", ".card", 22);
+  slider("sliderCD", ".card", 22);
 } else {
   slider("sliderLP", ".card", 0);
   slider("sliderCD", ".card", 0);

@@ -4,6 +4,9 @@
   h2 {
     font-size: 5.5rem;
   }
+  
+  nav #menuToggle input,
+  nav #menuToggle input ~ .menu-icon {display: none;}
 
   .content {
     height: 100%;
@@ -183,6 +186,7 @@
 
   .point {
     align-self: flex-start;
+    margin: 0 2rem;
     max-width: 15.625rem;
     &:nth-child(2) {
       margin-top: -1rem;
@@ -433,6 +437,9 @@
       }
     }
   }
+
+  .close,
+  .title {display: block;}
 
   #contact {
     flex-direction: row;
