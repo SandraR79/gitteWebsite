@@ -780,42 +780,42 @@ section {
   flex-direction: column;
   width: auto;
 }
-#work .record .card {
+#work .card-container {
+  height: auto;
+  width: 77vw;
+}
+#work .card {
   height: 100%;
   position: relative;
   transition: transform .8s;
   transform-style: preserve-3d;
   width: 100%;
 }
-#work .record .card img {
+#work .card img {
   height: 100%;
   transform-style: preserve-3d;
   width: 100%;
 }
-#work .record .card .front,
-#work .record .card .back {
+#work .card .front,
+#work .card .back {
   display: flex;
   flex-direction: column;
   height: auto;
   width: 100%;
 }
-#work .record .card .back {
+#work .card .back {
   background-color: #fff;
   box-sizing: border-box;
   color: #000;
   padding: 1rem 0;
 }
-#work .record .card .back p {
+#work .card .back p {
   font-size: .7em;
   margin: 0;
 }
-#work .record .card .back p span {
+#work .card .back p span {
   display: inline-block;
   font-weight: 700;
-}
-#work .card-container {
-  height: auto;
-  width: 77vw;
 }
 
 .title {
@@ -951,11 +951,11 @@ footer > div {
     height: auto;
     width: 33vw;
   }
-  #work .record .card {
+  #work .card {
     height: auto;
   }
-  #work .record .card .front,
-  #work .record .card .back {
+  #work .card .front,
+  #work .card .back {
     height: 100%;
   }
   #work .record .back {
@@ -1028,6 +1028,10 @@ footer > div {
     width: 100%;
   }
 
+  .header {
+    margin: 0;
+  }
+
   .head {
     align-content: flex-end;
     display: flex;
@@ -1062,14 +1066,19 @@ footer > div {
     flex: 0 0 auto;
   }
   nav .main-nav {
+    align-self: inherit;
     background: none;
-    position: static;
     display: flex;
     flex-direction: row;
-    align-self: inherit;
+    height: 100%;
+    position: static;
     margin: 0 4rem 0 0;
   }
+  nav .main-nav > li {
+    height: 100%;
+  }
   nav .main-nav > li > a {
+    height: 100%;
     padding: 0 1em;
   }
   nav .main-nav .dropdown.open .arrow {
@@ -1218,6 +1227,7 @@ footer > div {
     position: static;
     flex-direction: column;
     justify-content: center;
+    margin: 2rem 0;
     width: 50%;
   }
   #live .content .desc {
@@ -1257,6 +1267,9 @@ footer > div {
     align-items: center;
   }
 
+  #work .header {
+    width: 95%;
+  }
   #work .header .head {
     margin-bottom: 2rem;
   }
@@ -1385,6 +1398,49 @@ footer > div {
   #work .record.open {
     z-index: 10;
   }
+  #work .record .card {
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    height: 100%;
+    position: relative;
+    transition: transform .8s;
+    transform-style: preserve-3d;
+    width: 100%;
+  }
+  #work .record .card img {
+    height: 100%;
+    transform-style: preserve-3d;
+    width: 100%;
+  }
+  #work .record .card .front,
+  #work .record .card .back {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+  #work .record .card .back {
+    transform: rotateY(180deg);
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #000;
+    padding: 1rem;
+  }
+  #work .record .card .back p {
+    font-size: .7em;
+    margin: 0;
+  }
+  #work .record .card .back p span {
+    display: inline-block;
+    font-weight: 700;
+  }
+  #work .record .card .back .tracklist {
+    display: block;
+    overflow: auto;
+    padding-right: .5rem;
+  }
   #work .slider-nav {
     left: 3%;
     right: 3%;
@@ -1396,50 +1452,9 @@ footer > div {
     transition: all 0.3s ease-out;
     transform-origin: center;
   }
-  #work .card {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    height: 100%;
-    position: relative;
-    transition: transform .8s;
-    transform-style: preserve-3d;
-    width: 100%;
-  }
-  #work .card img {
-    height: 100%;
-    transform-style: preserve-3d;
-    width: 100%;
-  }
-  #work .card .front,
-  #work .card .back {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: absolute;
-    width: 100%;
-  }
-  #work .card .back {
-    transform: rotateY(180deg);
-    background-color: #fff;
-    box-sizing: border-box;
-    color: #000;
-    padding: 1rem;
-  }
-  #work .card .back p {
-    font-size: .7em;
-    margin: 0;
-  }
-  #work .card .back p span {
-    display: inline-block;
-    font-weight: 700;
-  }
-  #work .card .back .tracklist {
-    overflow: auto;
-    padding-right: .5rem;
-  }
 
   .close,
+  .tracks,
   .title {
     display: block;
   }

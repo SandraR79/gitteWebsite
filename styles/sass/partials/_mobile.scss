@@ -686,44 +686,44 @@ section {
     display: inline-flex;
     flex-direction: column;
     width: auto;
-    .card {
-      height: 100%;
-      position: relative;
-      transition: transform .8s;
-      transform-style: preserve-3d;
-      width: 100%;
-      img {
-        height: 100%;
-        transform-style: preserve-3d;
-        width: 100%;
-      }
-      .front,
-      .back {
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        width: 100%;
-      }
-      .back {
-        background-color: #fff;
-        box-sizing: border-box;
-        color: #000;
-        padding: 1rem 0;
-        p {
-          font-size: .7em;
-          margin: 0;
-          span {
-            display: inline-block;
-            font-weight: 700;     
-          }
-        }
-      }
-    }
   }
   .card-container {
     height: auto;
     width: 77vw;
   }
+  .card {
+  height: 100%;
+  position: relative;
+  transition: transform .8s;
+  transform-style: preserve-3d;
+  width: 100%;
+  img {
+    height: 100%;
+    transform-style: preserve-3d;
+    width: 100%;
+  }
+  .front,
+  .back {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+  }
+  .back {
+    background-color: #fff;
+    box-sizing: border-box;
+    color: #000;
+    padding: 1rem 0;
+    p {
+      font-size: .7em;
+      margin: 0;
+      span {
+        display: inline-block;
+        font-weight: 700;     
+      }
+    }
+  }
+}
 }
 
 .title {

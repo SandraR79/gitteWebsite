@@ -55,14 +55,14 @@
       height: auto;
       width: 33vw;
     }
-    .record {
-      .card {
-        height: auto;
-        .front,
-        .back {
-          height: 100%;
-        }
+    .card {
+      height: auto;
+      .front,
+      .back {
+        height: 100%;
       }
+    }
+    .record {
       .back {
         padding: 1rem;
       }
