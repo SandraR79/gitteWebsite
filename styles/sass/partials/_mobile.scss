@@ -432,7 +432,7 @@ section {
 }
 
 .header {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
   justify-content: space-between;
   margin: 2rem 0 1rem;
@@ -770,6 +770,7 @@ section {
   }
   .fb {
     display: flex;
+    align-items: center;
     .logo {
       height: 50px;
       width: 50px;
