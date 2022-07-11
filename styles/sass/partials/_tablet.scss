@@ -39,6 +39,7 @@
 
   #work {
     .header {
+      width: 95%;
       flex-direction: row;
       .head {
         margin-bottom: 3rem;
@@ -76,10 +77,13 @@
     display: flex;
     flex-direction: column;
     .header {
-      display: block;
-      width: 50%;
+      display: flex;
+      width: calc(55vw + 7%);
       .head {
         padding: 0;
+        > h2 {
+          margin-left: 0;
+        }
       }
     }
     #termine {

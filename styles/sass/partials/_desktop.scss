@@ -217,6 +217,9 @@
     background-image: url("../../img/gittehaenning_live_BG.jpg");
     background-size: 100% auto;
     height: 51vw;
+    .header {
+      width: 50%;
+    }
     .content {
       display: flex;
       position: static;
