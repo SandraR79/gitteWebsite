@@ -377,10 +377,11 @@ section {
 
 .head {
   align-content: flex-end;
+  box-sizing: border-box;
   display: inline-flex;
   position: relative;
   margin: 0 0 2rem;
-  box-sizing: border-box;
+  hyphens: auto;
 }
 .head .line {
   position: absolute;
@@ -823,6 +824,10 @@ section {
 }
 .title span {
   color: #ea3d94;
+}
+
+.hinweis {
+  display: none;
 }
 
 .tracks {
@@ -1354,7 +1359,7 @@ footer > div {
     width: 300px;
   }
   #work .record:nth-child(8) {
-    margin: -20rem 0 0 -1.5rem;
+    margin: -17rem 0 0 -1.5rem;
     z-index: 0;
   }
   #work .record:nth-child(8) .card-container {
@@ -1383,7 +1388,7 @@ footer > div {
     width: 300px;
   }
   #work .record:nth-child(12) {
-    margin: -18rem 0 0 .5rem;
+    margin: -15rem 0 0 .5rem;
   }
   #work .record:nth-child(12) .card-container {
     height: 350px;
@@ -1465,6 +1470,12 @@ footer > div {
   .tracks,
   .title {
     display: block;
+  }
+
+  .hinweis {
+    align-self: center;
+    display: block;
+    font-size: 0.9rem;
   }
 
   #contact {

@@ -304,10 +304,11 @@ section {
 
 .head {
   align-content: flex-end;
+  box-sizing: border-box;
   display: inline-flex;
   position: relative;
   margin: 0 0 2rem;
-  box-sizing: border-box;
+  hyphens: auto;
   .line {
     position: absolute;
     bottom: 0;
@@ -730,6 +731,7 @@ section {
   display: none;
   span {color: $prime-color;}
 }
+.hinweis {display: none;}
 
 .tracks {
   display: none;

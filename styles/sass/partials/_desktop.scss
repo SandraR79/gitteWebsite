@@ -344,7 +344,7 @@
         }
       }
       &:nth-child(8) {
-        margin: -20rem 0 0 -1.5rem;
+        margin: -17rem 0 0 -1.5rem;
         z-index: 0;
         .card-container {
           height: 270px;
@@ -373,7 +373,7 @@
         }
       }
       &:nth-child(12) {
-        margin: -18rem 0 0 .5rem;
+        margin: -15rem 0 0 .5rem;
         .card-container {
           height: 350px;
           width: 350px;
@@ -456,6 +456,11 @@
   .close,
   .tracks,
   .title {display: block;}
+  .hinweis {
+    align-self: center;
+    display: block;
+    font-size: 0.9rem;
+  }
 
   #contact {
     flex-direction: row;
