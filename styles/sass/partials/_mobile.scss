@@ -594,7 +594,7 @@ section {
       color: #fff;
       font-size: 0.9rem;
       text-transform: uppercase;
-      margin-top: 1rem;
+      margin-top: 2rem;
       &:first-child {margin: 0;}
     }
     .concert {
@@ -710,6 +710,7 @@ section {
     height: auto;
     width: 100%;
   }
+  .front {overflow: hidden;}
   .back {
     background-color: #fff;
     box-sizing: border-box;
@@ -725,6 +726,35 @@ section {
     }
   }
 }
+}
+
+.new-badge {
+  align-items: center;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  font-size: 1rem;
+  text-transform: uppercase;
+  justify-content: center;
+  height: 6rem;
+  left: 0;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  width: 6rem;
+  z-index: 2;
+  > span {
+    background: #ea3d94;
+    height: 1.5rem;
+    transform: rotate(-45deg) translateX(-1.5rem);
+    display: block;
+    position: absolute;
+    width: 6rem;
+    text-align: center;
+    line-height: 1.5rem;
+    left: -0.35rem;
+    top: -0.35rem;
+  }
 }
 
 .title {

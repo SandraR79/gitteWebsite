@@ -674,7 +674,7 @@ section {
   color: #fff;
   font-size: 0.9rem;
   text-transform: uppercase;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 #live #termine h4:first-child {
   margin: 0;
@@ -804,6 +804,9 @@ section {
   height: auto;
   width: 100%;
 }
+#work .card .front {
+  overflow: hidden;
+}
 #work .card .back {
   background-color: #fff;
   box-sizing: border-box;
@@ -817,6 +820,35 @@ section {
 #work .card .back p span {
   display: inline-block;
   font-weight: 700;
+}
+
+.new-badge {
+  align-items: center;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  font-size: 1rem;
+  text-transform: uppercase;
+  justify-content: center;
+  height: 6rem;
+  left: 0;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  width: 6rem;
+  z-index: 2;
+}
+.new-badge > span {
+  background: #ea3d94;
+  height: 1.5rem;
+  transform: rotate(-45deg) translateX(-1.5rem);
+  display: block;
+  position: absolute;
+  width: 6rem;
+  text-align: center;
+  line-height: 1.5rem;
+  left: -0.35rem;
+  top: -0.35rem;
 }
 
 .title {
@@ -1148,7 +1180,7 @@ footer > div {
   /* Start Desktop */
   #start {
     background-image: url("../../img/gittehaenning_start_BG.jpg");
-    height: 0;
+    height: 0px;
     margin-top: 0;
     min-height: unset;
     padding-top: 51%;
