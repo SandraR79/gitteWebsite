@@ -73,7 +73,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     },
   })
 
->>>>>>> 9be5d645dfe46e9fcd4d824438c7e6e76259f043
   contactTl.fromTo('#contact .head .line', {x: "-100%"}, {x: 0, duration: 1, ease: "back.in"})
   contactTl.fromTo('#contact .head h2', {opacity: 0, x: -70}, {opacity: 1, x: 0, duration: .75, ease: "back.out"})
   contactInfo.forEach((contacts) => {contactTl.fromTo(contacts, {opacity: 0, y: 30}, {opacity: 1, y: 0, duration: .75, ease: "back.out"}, "<20%")})
