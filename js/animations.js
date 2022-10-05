@@ -1,5 +1,4 @@
-document.addEventListener ("DOMContentLoaded", () => {
-
+document.addEventListener('DOMContentLoaded', (event) => {
   "use strict"
   gsap.registerPlugin(ScrollTrigger);
 
@@ -49,7 +48,6 @@ document.addEventListener ("DOMContentLoaded", () => {
   })
   liveTl.fromTo('#live .head .line', {x: "100%"}, {x: 0, duration: 1, ease: "back.in"}, "<10%")
   liveTl.fromTo('#live .head h2', {opacity: 0, x: -70}, {opacity: 1, x: 0, duration: .75, ease: "back.out"})
-  liveTl.fromTo('#live .filter', {opacity: 0, x: 30}, {opacity: 1, x: 0, duration: .75, ease: "back.out"}, "<20%")
   termine.forEach((termin) => {liveTl.fromTo(termin, {opacity: 0, y: 30}, {opacity: 1, y: 0, duration: .5, ease: "back.out"}, "<20%")})
   // liveTl.fromTo('#termine .down', {opacity: 0}, {opacity: 1, duration: .75, ease: "back.out"}, "<20%")
   liveTl.fromTo('#live .note', {opacity: 0, x: 30}, {opacity: 1, x:0, duration: .75, ease: "back.out"}, "<40%")
@@ -64,6 +62,7 @@ document.addEventListener ("DOMContentLoaded", () => {
   recordsTl.fromTo('#work .head .line', {x: "-100%"}, {x: 0, duration: 1, ease: "back.in"})
   recordsTl.fromTo('#work .head h2', {opacity: 0, x: 70}, {opacity: 1, x: 0, duration: .75, ease: "back.out"})
   recordsTl.fromTo('#work .head p', {opacity: 0, x: 70}, {opacity: 1, x: 0, duration: .75, ease: "back.out"}, "< 30%")
+  recordsTl.fromTo('#work .hinweis', {opacity: 0, x: 30}, {opacity: 1, x: 0, duration: .75, ease: "back.out"}, "<20%")
   recordsTl.fromTo('#work .filter', {opacity: 0, x: 30}, {opacity: 1, x: 0, duration: .75, ease: "back.out"}, "<20%")
   recordsAni.forEach((record) => {recordsTl.fromTo(record, {opacity: 0, scale: .5}, {opacity: 1, scale: 1, duration: .7}, "<20%")})
 
@@ -74,6 +73,7 @@ document.addEventListener ("DOMContentLoaded", () => {
     },
   })
 
+>>>>>>> 9be5d645dfe46e9fcd4d824438c7e6e76259f043
   contactTl.fromTo('#contact .head .line', {x: "-100%"}, {x: 0, duration: 1, ease: "back.in"})
   contactTl.fromTo('#contact .head h2', {opacity: 0, x: -70}, {opacity: 1, x: 0, duration: .75, ease: "back.out"})
   contactInfo.forEach((contacts) => {contactTl.fromTo(contacts, {opacity: 0, y: 30}, {opacity: 1, y: 0, duration: .75, ease: "back.out"}, "<20%")})

@@ -349,7 +349,6 @@ const sliderCD = document.getElementById('sliderCD')
 const recordsCDAni = sliderCD.querySelectorAll(".record")
 const recordsLPAni = sliderLP.querySelectorAll(".record")
 const subtitle = document.querySelector('.subtitle')
-console.log(subtitle)
 
 filterLPBtn.addEventListener('click', () => {
   sliderLP.style.display='block'
@@ -383,7 +382,6 @@ if (!isMobile && window.matchMedia("(min-width: 1024px)").matches) {
   slider("sliderCD", ".card", 0);
   recordInfo();
 } else if (isMobile && window.matchMedia("(min-width: 768px)").matches) {
-  console.log('passt')
   slider("sliderLP", ".card", 22);
   slider("sliderCD", ".card", 22);
 } else {
